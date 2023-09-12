@@ -238,7 +238,7 @@ if(document.URL.match(page)){
     var dodgevilla = localStorage["dodge" + window.game_data.village.id];
 
     if (mode == "방어"&&stop==0) {
-        if (dodgevilla.length > 6) {
+        if (dodgevilla !== undefined&&dodgevilla.length > 6) {
             setTimeout(function () {
                 document.forms[0].troop_confirm_submit.click();
             }, (1 + Math.random() * 3) * 1000);
@@ -257,14 +257,14 @@ if (document.URL.match(/screen=place/i)&&stop==0) {
     }
     function place() {
         console.log("command " + pcount + "dip=" + dip + "sip=" + sip);
-        pcount++;
+        pcount++; console.log("플레이스 카운트: "+pcount);
         bot();
         now = localStorage.now;
         document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1>  현재 모드는 ' + mode + ' 현재 상태는 ' + now + '</FONT> '
 
         if (mode == "방어"&&stop==0) {
             clearInterval(pla);
-            $.getScript("https://wifm.site/tw/135/wifm/casdodge.js");
+            $.getScript("https://wifm.site/tw/135/test/casdodge.js");
         };
         if (!document.hidden && now == "대기" && document.URL.match(/screen=place/i) && !document.URL.match(/try=confirm/i) && !document.URL.match(/mode=units/i)) {
 
@@ -273,7 +273,7 @@ if (document.URL.match(/screen=place/i)&&stop==0) {
             }
             if (mode == "페이크") {
                 clearInterval(pla); console.log("페이크 실행");
-                $.getScript("https://wifm.site/tw/135/wifm/load.js");
+                $.getScript("https://wifm.site/tw/135/test/load.js");
             };
         }}};
 

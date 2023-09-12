@@ -60,7 +60,6 @@ else{localStorage.setItem("stop","0"); UI.SuccessMessage('시작 ',1000);};
     var fg = localStorage.fg;
     g1 = prompt("동줍에 사용할 그룹의 id를 입력해주세요 URL에 group= 다음 숫자입니다", fg);
     localStorage.setItem("fg", g1);
-};
 }else if (mdd == 5) {
     var old = localStorage.old;
     old = prompt("어떤 리네임으로 하시겠습니까?", old);

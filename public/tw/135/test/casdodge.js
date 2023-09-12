@@ -1,6 +1,6 @@
 var dip = localStorage["dodge" + window.game_data.village.id];
 console.log("dip " + dip);
-if (dip && document.URL.match(/screen=place/i)) {
+if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
     if (dip.length > 6) {
         var t = new RegExp(dip, "g");
         console.log(t);
