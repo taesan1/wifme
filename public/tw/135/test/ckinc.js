@@ -18,7 +18,6 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
     if (!monitor_incoming) {
         monitor_incoming = 30;
     };
-    var tim =
     var tim = "0",
         villy = "0",
         ap = "0",
