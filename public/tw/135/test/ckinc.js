@@ -29,7 +29,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
     if(!dod) {dod = 4;localStorage.dod = 4};
     var dodn = parseInt(dod) + parseInt(Math.random() * 2);
     var mon = (Math.floor(Math.random() * monitor_incoming / 10) + parseInt(monitor_incoming)) * 1000; var ia=localStorage["ia_"+pid];
-    var incoming = parseInt(document.getElementById('incomings_amount').innerText);console.log("incoming은"+incoming+"ia는"+ia);
+    var incoming = parseInt(document.getElementById('incomings_amount').innerText);
     var ia=localStorage["ia_"+pid]; if(ia == "undefined"){ia = incoming;localStorage.setItem("ia_" + pid, ia);};
     var sitter = "";
     var link = window.location.href;
@@ -218,7 +218,8 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
         pt++;
         man = document.getElementsByClassName("overview_filters_manage");
         man[0].innerText = "Manage filters         닷지 " + dodn + " 분 / 모니터링 " + ia + " Incoming //새로고침=" + pt + " // 매 " + parseInt(mon / 1000) + " 초 //현재 모드는 "+mode+"  현재 상태는 "+ now;
-
+        var incoming = parseInt(document.getElementById('incomings_amount').innerText);console.log("incoming은"+incoming+"ia는"+ia);
+        var ia=localStorage["ia_"+pid];
         if (localStorage.now !== "대기") {
             UI.InfoMessage('잠시 대기 현재는 ' + localStorage.now, 16000);
         } else {
