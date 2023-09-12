@@ -251,7 +251,6 @@ if (document.URL.match(/screen=place/i)&&stop==0) {
     var pcount = 0;
     place();
     dip = localStorage["dodge" + window.game_data.village.id];
-    sip = localStorage["snipe" + window.game_data.village.id];
     if ((!dip || dip == undefined)){
         var pla = setInterval(place, 5000);
     }
