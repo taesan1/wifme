@@ -30,7 +30,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
     var dodn = parseInt(dod) + parseInt(Math.random() * 2);
     var mon = (Math.floor(Math.random() * monitor_incoming / 10) + parseInt(monitor_incoming)) * 1000; var ia=localStorage["ia_"+pid];
     var incoming = parseInt(document.getElementById('incomings_amount').innerText);console.log("incoming은"+incoming+"ia는"+ia);
-    if (ia == "undefined") {ia = incoming;localStorage.setItem("ia_" + pid, ia);};
+    var ia=localStorage["ia_"+pid]; (ia == "undefined") {ia = incoming;localStorage.setItem("ia_" + pid, ia);};
     var sitter = "";
     var link = window.location.href;
     var villageid = (link.split("village=")[1]).split("&")[0];
@@ -236,7 +236,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             }
             if (incoming < ia) {
                 ia = incoming;
-                localStorage.setItem("ia_" + pid, ia);
+                localStorage.setItem("ia_" + pid, incoming);
             }
             if (incoming > 0) {
                 defense();
