@@ -51,6 +51,7 @@ if (light > 0 || catapult > 10 || archer>0|| heavy > 0 || spy>10 || spear > 0 ||
     if (catapult>10){ catapult=catapult-10;} else {catapult=0;};
     if (spear>2){spear=spear-2;}else{spear=0;}
     if (sword>2){sword=sword-2;}else{sword=0;}
+
     document.forms[0].light.value =light;
     document.forms[0].catapult.value =catapult;
     document.forms[0].archer.value =archer;

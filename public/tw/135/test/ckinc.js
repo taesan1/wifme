@@ -139,7 +139,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var stop=localStorage.stop;
                         //닷지
                         if (!gostack1 &&!gostack && !gododged && !gosniped && !done && !done1 && !fake1 && !gonoble && !gonoble1&&stop==0) {
-                            if (count < 1 && lt3 < dodn) {
+                            if (count<1&&lt3<dodn){
                                 count++;
                                 $(row).find('.rename-icon').click();
                                 old = $(row).find('input[type=text]').val();
