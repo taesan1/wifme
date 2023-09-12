@@ -10,8 +10,10 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
         var t3 = /Small attack/g;
         var t4 = /Medium attack/g;
         var t5 = /Large attack/g;
+        var t6 = /Dodged/g;
         var table = document.getElementsByClassName("vis");
         var ii = table[11].rows.length;
+        var ii1 = table[12].rows.length;
         var world = window.game_data.world;
         var back =0
         for (i = 0; i < ii; i++) {
@@ -58,7 +60,32 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
             };
 
         };
-        localStorage.setItem("now", "대기");
+        var errorBox = document.querySelector("#content_value > div.error_box > div");
+        if (errorBox && errorBox.textContent.includes("Not enough units available")) {
+            var la = "Dodged";
+            var table = document.getElementsByClassName("vis");
+            var ii1 = table[12].rows.length;
+            for (i = 0; i < ii1; i++) {
+                var row2 = table[12].rows[i];
+                var row3 = row2.cells[0].innerHTML;
+                var gododged = /Dodged/g.test(row2.cells[0].innerHTML);
+
+                if (gododged) {
+                    if (count < 1) {
+                        count++;
+                        $(row2).find('.rename-icon').click();
+                        old = $(row2).find('input[type=text]').val();
+                        old = old.replace(la, '');
+                        $(row2).find('input[type=button]').click();
+                    }
+                    close()
+                }else {close()};
+            }
+        }
+
+
+    localStorage.setItem("now", "대기");
+
     }
 
 
@@ -103,3 +130,14 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
 
 
 }
+function close(){
+delete localStorage["dodge" + window.game_data.village.id];
+delete localStorage["dodger" + window.game_data.village.id];
+delete localStorage["dodget" + window.game_data.village.id];
+delete localStorage["nearcoord_"+window.game_data.village.id];
+delete localStorage["ddd" + window.game_data.village.id];
+setTimeout(function() {
+    document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1 COLOR="RED"> mode 방어: 창이 스스로 닫힙니다.</FONT><br>';
+    self.close();
+}, 4000);}
+
