@@ -1,5 +1,6 @@
 var dip = localStorage["dodge" + window.game_data.village.id];
-console.log("dip " + dip);
+console.log("dip는 " + dip +" village id 는 " +window.game_data.village.id );
+
 if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
     if (dip.length > 6) {
         var t = new RegExp(dip, "g");

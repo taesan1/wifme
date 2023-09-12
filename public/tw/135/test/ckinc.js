@@ -222,7 +222,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
         if (localStorage.now !== "대기") {
             UI.InfoMessage('잠시 대기 현재는 ' + localStorage.now, 16000);
         } else {
-            if (pt > Math.floor(Math.random() * 20) + 80) {
+            if (pt > Math.floor(Math.random() * 20) + 50) {
                 window.location.reload();
             };
             if (incoming > ia || tag == 1) {
