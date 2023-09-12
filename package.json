@@ -2,5 +2,10 @@
   "dependencies": {
     "express": "^4.18.2",
     "node.js": "^0.0.1-security"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "build": "node app.js"
   }
 }
+
