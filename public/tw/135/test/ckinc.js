@@ -212,6 +212,60 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             clearInterval(gooo);
         }
     }
+    function monitor() {
+        dd = Date.parse(Date());
+        localStorage.incoming_date = dd;
+        UI.InfoMessage('Monitor', 1000);
+        pt++;
+        man = document.getElementsByClassName("overview_filters_manage");
+        man[0].innerText = "Manage filters         닷지 " + dodn + " 분 / 모니터링 " + ia + " Incoming //새로고침=" + pt + " // 매 " + parseInt(mon / 1000) + " 초 //현재 모드는 "+mode+"  현재 상태는 "+ now;
+
+        if (localStorage.now !== "대기") {
+            UI.InfoMessage('잠시 대기 현재는 ' + localStorage.now, 16000);
+        } else {
+            if (pt > Math.floor(Math.random() * 20) + 80) {
+                window.location.reload();
+            };
+            if (incoming > ia || tag == 1) {
+                localStorage.setItem("now", "태그");
+                clearInterval(gooo);
+                man = document.getElementsByClassName("overview_filters_manage");
+                man[0].innerText = "Manage filters         닷지 " + dodn + " 분 / 모니터링 " + ia + " Incoming //새로고침=" + pt + " // 매 " + parseInt(mon / 1000) + " 초";
+                setTimeout(function() {
+                    window.location.href = link;
+                }, Math.floor(Math.random() * 15000) + 15000);
+            }
+            if (incoming < ia) {
+                ia = incoming;
+                localStorage.setItem("ia_" + pid, ia);
+            }
+            if (incoming > 0) {
+                defense();
+            }
+        }
+    }
+    if (localStorage.now == "태그") {
+        setTimeout(function() {
+            tagging();
+        }, Math.floor(Math.random() * 5000) + 4000);
+    }
+    var gooo = setInterval(monitor, mon);
+
+}
+//change page
+else {
+    var sitter = "";
+    var man = document.getElementsByClassName("overview_filters_manage");
+    var link = window.location.href;
+
+    var villageid = (link.split("village=")[1]).split("&")[0];
+    if (/t=/g.test(link)) {
+        sitter = "t=" + (link.split("t=")[1]).split("&")[0]
+    };
+    link = document.URL.split('?')[0] + "?" + sitter + "&village=" + villageid + "&screen=overview_villages&mode=incomings&subtype=attacks&group=0&page=0";
+    setTimeout(function() {
+        window.location.href = link;
+    }, Math.floor(Math.random() * 2000) + 2200);
 }
 
 
