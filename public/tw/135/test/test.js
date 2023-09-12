@@ -24,6 +24,8 @@ console.log(message+ ' ' +name+ '님 현재 빌리지는 '+ vcoord+ ' 입니다.
 //페이지,메시지,인커밍
 var stop=localStorage.stop; if(!stop){stop="0";localStorage.stop=0};
 var page,page1,page2,page3,page4;var tim="";
+var dd = Date.parse(Date());
+localStorage.incoming_date = dd;
 var incoming_open=Date.parse(Date())-localStorage.incoming_date; console.log("incoming오픈"+incoming_open+localStorage.incoming_date);
 var inc=game_data.player.incomings;
 var ia=localStorage["ia_"+pid];

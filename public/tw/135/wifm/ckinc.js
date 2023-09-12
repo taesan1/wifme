@@ -68,7 +68,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             }, Math.floor(Math.random() * 2000) + 1200);
         } else {
             var count = 0;
-            var label = "dodged ";
+            var label = "Dodged ";
             var table = document.getElementById("incomings_table");
             if (table) {
                 var row = [];
@@ -79,7 +79,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                     if (end) {
                         i = cc;
                     } else {
-                        var gododged = /dodged/g.test(row.cells[0].innerHTML);
+                        var gododged = /Dodged/g.test(row.cells[0].innerHTML);
                         var gostack = /stacked/g.test(row.cells[0].innerHTML);
                         var gostack1 = /ST/g.test(row.cells[0].innerHTML);
                         var goattack = / Attack /g.test(row.cells[0].innerHTML);
