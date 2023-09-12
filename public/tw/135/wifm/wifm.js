@@ -544,7 +544,7 @@ if (document.URL.match(page)) {
     var dodgevilla = localStorage["dodge" + window.game_data.village.id];
 
     if (mode == "방어"&&stop==0) {
-        if (dodgevilla === undefined || dodgevilla.length > 6) {
+        if (dodgevilla.length > 6) {
             setTimeout(function () {
                 document.forms[0].troop_confirm_submit.click();
             }, (1 + Math.random() * 3) * 1000);
@@ -579,8 +579,7 @@ if (document.URL.match(/screen=place/i)&&stop==0) {
     var pcount = 0;
     place();
     dip = localStorage["dodge" + window.game_data.village.id];
-    sip = localStorage["snipe" + window.game_data.village.id];
-    if ((!dip || dip == undefined)||(!sip || sip == undefined)) {
+    if ((!dip || dip == undefined)) {
         var pla = setInterval(place, 5000);
     }
     function place() {
