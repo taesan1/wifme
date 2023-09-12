@@ -15,7 +15,7 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
         var ii = table[11].rows.length;
         var ii1 = table[12].rows.length;
         var world = window.game_data.world;
-        var back =0
+        var count="0"
         for (i = 0; i < ii; i++) {
             var row = table[11].rows[i];
             var row1 = row.cells[0].innerHTML;
@@ -77,8 +77,8 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
                         old = $(row2).find('input[type=text]').val();
                         old = old.replace(la, '');
                         $(row2).find('input[type=button]').click();
-                    }
-                    close()
+                        }else {close();}
+
                 }else {close()};
             }
         }
