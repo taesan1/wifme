@@ -8,7 +8,6 @@ function bot() {
 var world = window.game_data.world;
 //var ip=localStorage["dodge"+window.game_data.village.id];
 var dip = localStorage["dodge" + window.game_data.village.id];
-var ddd=localStorage["ddd" + window.game_data.village.id]; if(!ddd){ddd="0";localStorage["ddd" + window.game_data.village.id]="0"};
 console.log("dip " + dip);
 if (dip && document.URL.match(/screen=place/i)) {
     if (dip.length > 6) {
@@ -55,7 +54,6 @@ if (dip && document.URL.match(/screen=place/i)) {
                         setTimeout(function() {
                             localStorage.setItem("mode", "방어");
                             window.location.href = n1;
-                            localStorage["ddd" + window.game_data.village.id]="1";
                         }, (Math.random() * 999));
                     } else {
                         closetime = closetime - 500;
@@ -110,7 +108,7 @@ if (dip && document.URL.match(/screen=place/i)) {
 
     };
 
-    if (dip == "close"&& ddd =="1") {
+    if (dip == "close") {
         delete localStorage["dodge" + window.game_data.village.id];
         delete localStorage["dodger" + window.game_data.village.id];
         delete localStorage["dodget" + window.game_data.village.id];

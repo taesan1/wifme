@@ -17,12 +17,13 @@ var reason = [];
 var keyToEdit;
 var current_units;
 var currentGameTime = getCurrentGameTime();
-var sitter = "";
+var sitter = "";var fg=localStorage.fg;
 if (window.top.game_data.player.sitter != "0") {
     sitter = "t=" + window.top.game_data.player.id + "&";
-}
-var link = ["https://" + window.location.host + "/game.php?" + sitter + "village=", "&screen=am_farm"];
+};if(fg!){fg="0";localStorage.fg="0"}
+var link = ["https://" + window.location.host + "/game.php?" + sitter + "village=", "&screen=am_farm&group="+fg];
 sendtoStats(1, "Enhancer");
+
 var botc = 0;
 var userset;
 var deli = localStorage["delay"];
@@ -352,7 +353,7 @@ function showAllRows() {
 function getPage(i, pages) {
     if (i < pages) {
         changeHeader(filter_41 + " " + (i + 1) + "/" + pages + " <img src='graphic/throbber.gif' height='24' width='24'></img>");
-        var url = link[0] + window.top.game_data.village.id + "&order=" + userset[s.order_by] + "&dir=" + userset[s.direction] + "&Farm_page=" + i + "&screen=am_farm";
+        var url = link[0] + window.top.game_data.village.id + "&order=" + userset[s.order_by] + "&dir=" + userset[s.direction] + "&Farm_page=" + i + "&screen=am_farm&group="+fg;
         window.top.$.ajax({
             type: 'GET',
             url: url,
