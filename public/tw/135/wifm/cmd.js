@@ -17,7 +17,7 @@ if (!coin1) {
     coin1 = "0";
     localStorage.coin1 = "0";
 }
-var mdd = prompt("1= 중지/실행 \n2= 모드 \n3= 페이크그룹 설정 \n4= 설정  \n5= 방어(닷징,스나이핑) \n6= OP \n7= 자동 파밍 \n8= 자동 코찍 \n9= 인커밍리네임 \n10= 대기상태 ", md);
+var mdd = prompt("1= 중지/실행 \n2= 모드 \n3= 페이크그룹 설정 \n4= 설정  \n5= 방어(닷징,스나이핑) \n6= OP \n7= 자동 파밍 \n8= 자동 코찍 \n9= 인커밍리네임 \n10= 대기상태 \n11= 일괄회군 ", md);
 localStorage.setItem("mdt", mdd);
 
 if (mdd == 1) {if(stop==0){localStorage.setItem("stop","1"); UI.ErrorMessage('중지 ',1000);}
@@ -75,7 +75,7 @@ else{localStorage.setItem("stop","0"); UI.SuccessMessage('시작 ',1000);};
 
 } else if (mdd == 3) {
     //페이크 그룹 설정
-    $.getScript("https://wifm.site/tw/setcoord.js");
+    $.getScript("https://wifm.site/setcoord.js");
 }else if (mdd == 4) {  var main = localStorage.main;
     main = prompt("main빌라의 id를 입력해주세요 ", main);
     localStorage.setItem("main", main);
@@ -183,4 +183,10 @@ else if (mdd == 10) {
     var now = localStorage.now;
     console.log(now);
     localStorage.now = "대기";
+}else if (mdd == 11){var sitter="";
+    var link=window.location.href;
+    var villageid=game_data.village.id
+    if(/t=/g.test(link)){sitter="t="+(link.split("t=")[1]).split("&")[0]};
+    link = document.URL.split('?')[0]+"?"+sitter+"&village="+villageid+"&screen=overview_villages&type=away_detail&filter_villages=1&mode=units&group=0";
+    window.open(link,"open");
 }
