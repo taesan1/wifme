@@ -75,7 +75,7 @@ else{localStorage.setItem("stop","0"); UI.SuccessMessage('시작 ',1000);};
 
 } else if (mdd == 3) {
     //페이크 그룹 설정
-    $.getScript("https://wifm.site/setcoord.js");
+    $.getScript("https://wifm.site/tw/setcoord.js");
 }else if (mdd == 4) {  var main = localStorage.main;
     main = prompt("main빌라의 id를 입력해주세요 ", main);
     localStorage.setItem("main", main);
