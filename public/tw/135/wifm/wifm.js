@@ -299,7 +299,7 @@ if(document.URL.match(page)||document.URL.match(page1)||document.URL.match(page2
 bot();
 
 //파밍
-if(document.URL.match("&screen=am_farm")&&stop==0){$.getScript("https://wifm.site/tw/enhencer/enhancerAltb4.js");}
+if(document.URL.match("&screen=am_farm")&&stop==0){$.getScript("https://wifm.site/tw/enhancer/enhancerAltb4.js");}
 
 //랠리포인트
 page = new RegExp("&screen=place&try=confirm");
