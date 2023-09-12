@@ -77,9 +77,25 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
                         old = $(row2).find('input[type=text]').val();
                         old = old.replace(la, '');
                         $(row2).find('input[type=button]').click();
-                        }else {close();}
+                        }else {   delete localStorage["dodge" + window.game_data.village.id];
+                        delete localStorage["dodger" + window.game_data.village.id];
+                        delete localStorage["dodget" + window.game_data.village.id];
+                        delete localStorage["nearcoord_"+window.game_data.village.id];
+                        delete localStorage["ddd" + window.game_data.village.id];
+                        setTimeout(function() {
+                            document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1 COLOR="RED"> mode 방어: 창이 스스로 닫힙니다.</FONT><br>';
+                            self.close();
+                        }, 4000);}
 
-                }else {close()};
+                }else {   delete localStorage["dodge" + window.game_data.village.id];
+                    delete localStorage["dodger" + window.game_data.village.id];
+                    delete localStorage["dodget" + window.game_data.village.id];
+                    delete localStorage["nearcoord_"+window.game_data.village.id];
+                    delete localStorage["ddd" + window.game_data.village.id];
+                    setTimeout(function() {
+                        document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1 COLOR="RED"> mode 방어: 창이 스스로 닫힙니다.</FONT><br>';
+                        self.close();
+                    }, 4000);};
             }
         }
 
@@ -130,14 +146,5 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
 
 
 }
-function close(){
-delete localStorage["dodge" + window.game_data.village.id];
-delete localStorage["dodger" + window.game_data.village.id];
-delete localStorage["dodget" + window.game_data.village.id];
-delete localStorage["nearcoord_"+window.game_data.village.id];
-delete localStorage["ddd" + window.game_data.village.id];
-setTimeout(function() {
-    document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1 COLOR="RED"> mode 방어: 창이 스스로 닫힙니다.</FONT><br>';
-    self.close();
-}, 4000);}
+
 
