@@ -12,6 +12,7 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
         var table = document.getElementsByClassName("vis");
         var ii = table[11].rows.length;
         var world = window.game_data.world;
+        var back =0
         for (i = 0; i < ii; i++) {
             var row = table[11].rows[i];
             var row1 = row.cells[0].innerHTML;
@@ -53,7 +54,8 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
                 }
 
                 ct = setInterval(canceldodge, 500);
-            }
+            };
+
         };
         localStorage.setItem("now", "대기");
     }
@@ -97,4 +99,6 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
             self.close();
         }, 4000);
     };
+
+
 }
