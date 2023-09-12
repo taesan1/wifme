@@ -1,9 +1,3 @@
-javascript:
-    console.log(dip);
-
-
-var world = window.game_data.world;
-//var ip=localStorage["dodge"+window.game_data.village.id];
 var dip = localStorage["dodge" + window.game_data.village.id];
 console.log("dip " + dip);
 if (dip && document.URL.match(/screen=place/i)) {
@@ -17,6 +11,7 @@ if (dip && document.URL.match(/screen=place/i)) {
         var t5 = /Large attack/g;
         var table = document.getElementsByClassName("vis");
         var ii = table[11].rows.length;
+        var world = window.game_data.world;
         for (i = 0; i < ii; i++) {
             var row = table[11].rows[i];
             var row1 = row.cells[0].innerHTML;
@@ -53,11 +48,11 @@ if (dip && document.URL.match(/screen=place/i)) {
                             window.location.href = n1;
                         }, (Math.random() * 999));
                     } else {
-                        closetime = closetime - 1000;
+                        closetime = closetime - 500;
                     }
                 }
 
-                ct = setInterval(canceldodge, 1000);
+                ct = setInterval(canceldodge, 500);
             }
         };
         localStorage.setItem("now", "대기");
@@ -85,13 +80,11 @@ if (dip && document.URL.match(/screen=place/i)) {
         else if (heavy > 0) ip1 = 1100;
         else if (light > 0|| marcher>0) ip1 = 1000;
 
-
-        if (world == "en135") {
-            var ip = localStorage["dodge" + window.game_data.village.id];
-            $.getScript("https://wifm.site/tw/135/wifm/cbsdodge.js?xx=" + game_data["village"]["x"] + "&yy=" + game_data["village"]["y"] + "&tmin=" + ip + "&slow=" + ip1);
+         var ip = localStorage["dodge" + window.game_data.village.id];
+         $.getScript("https://wifm.site/tw/135/wifm/cbsdodge.js?xx=" + game_data["village"]["x"] + "&yy=" + game_data["village"]["y"] + "&tmin=" + ip + "&slow=" + ip1);
         }
 
-    };
+
 
     if (dip == "close") {
         delete localStorage["dodge" + window.game_data.village.id];
