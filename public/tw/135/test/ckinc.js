@@ -235,6 +235,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                 window.location.reload();
             };
             if (incoming > ia || tag == 1) {
+                UI.InfoMessage('태그가 시작됩니다.. ', 2000);
                 localStorage.setItem("now", "태그");
                 clearInterval(gooo);
                 man = document.getElementsByClassName("overview_filters_manage");

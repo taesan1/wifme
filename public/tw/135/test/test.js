@@ -333,19 +333,6 @@ if(document.URL.match(page)){
     }
 
     ;
-    if (mode == "팽"&&stop==0) {
-        document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1"> 팽 그룹= ' + group + '</FONT><br>';
-        setTimeout(function () {
-            document.forms[0].troop_confirm_submit.click();
-        }, del)
-    }
-    if (mode == "뉴크"&&stop==0) {
-        document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1"> 뉴크 그룹= ' + group + '</FONT><br>';
-        setTimeout(function () {
-            document.forms[0].troop_confirm_submit.click();
-        }, del)
-    }
-
 }
 if (document.URL.match(/screen=place/i)&&autovilla==1) {
     delete localStorage["autosss" + window.game_data.village.id];
