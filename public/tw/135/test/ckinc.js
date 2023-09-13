@@ -217,7 +217,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
         var ia=localStorage["ia_"+window.game_data.player.id];
         pt++;
         man = document.getElementsByClassName("overview_filters_manage");
-        man[0].innerText = "Manage filters         닷지 " + dodn + " 분 / 모니터링 " + ia + " Incoming //새로고침=" + pt + " // 매 " + parseInt(mon / 1000) + " 초 //현재 모드는 "+mode+"  현재 상태는 "+ now;
+        man[0].innerText = "Manage filters         닷지 " + dodn + " 분 / 모니터링 " +ia+ " Incoming //새로고침=" + pt + " // 매 " + parseInt(mon / 1000) + " 초 //현재 모드는 "+mode+"  현재 상태는 "+ now;
         var incoming = parseInt(document.getElementById('incomings_amount').innerText);console.log("incoming은"+incoming+"ia는 "+ia);
 
         if (localStorage.now !== "대기") {
