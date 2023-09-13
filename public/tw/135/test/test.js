@@ -99,19 +99,25 @@ if(document.URL.match("&screen=am_farm")&&stop==0){$.getScript("https://wifm.sit
 page=new RegExp("&screen=place&try=confirm");
 if(document.URL.match(page)){
     bot();
-        var inputMs;
-        var input;
-        var delay;
-        var arrInterval;
-        var attInterval;
-        var delayTime = parseInt(localStorage.delayTime);
-        if (isNaN(delayTime)) {
-            delayTime = 0;
-            localStorage.delayTime = JSON.stringify(delayTime);
-        }
+    var autovilla=localStorage["auto" + window.game_data.village.id];
+    if(!autovilla){autovilla="0";localStorage["auto" + window.game_data.village.id]="0"}
+    var autovillasss=localStorage["autosss" + window.game_data.village.id];
+    var autovillammm=localStorage["autommm" + window.game_data.village.id];
+    var autotime = localStorage["autotime" + window.game_data.village.id];
+    var autodelay = localStorage["autodelay" + window.game_data.village.id];
+    var inputMs;
+    var input;
+    var delay;
+    var arrInterval;
+    var attInterval;
+    var delayTime = parseInt(localStorage.delayTime);
+    if (isNaN(delayTime)) {
+        delayTime = 0;
+        localStorage.delayTime = JSON.stringify(delayTime);
+    }
 
-        var offsetHtml =
-            `<tr>
+    var offsetHtml =
+        `<tr>
         <td>
             <style>
             .tooltip .tooltiptext {
@@ -140,91 +146,172 @@ if(document.URL.match(page)){
         </td>
     </tr>`;
 
-        var setArrivalHtml =
-            `<tr>
+    var setArrivalHtml =
+        `<tr>
         <td>
-            도착시간 기준:
+            Set arrival:
         </td>
         <td id="showArrTime">
         </td>
     </tr>`;
 
-        var sendAttackHtml =
-            `<tr>
+    var sendAttackHtml =
+        `<tr>
         <td>
-            출발시간 기준:
+            Send at:
         </td>
         <td id="showSendTime">
         </td>
     </tr>`;
 
-        var buttons =
-            `<a id="arrTime" class="btn" style="cursor:pointer;">도착시간</a>
-    <a id="sendTime" class="btn" style="cursor:pointer;">출발시간</a>`;
+    var buttons =
+        `<a id="arrTime" class="btn" style="cursor:pointer;">Set arrival time</a>
+    <a id="sendTime" class="btn" style="cursor:pointer;">Set send time</a>`;
 
-        document.getElementById("troop_confirm_submit").insertAdjacentHTML("afterend", buttons);
-
-
-        var parentTable = document.getElementById("date_arrival").parentNode.parentNode;
-        parentTable.insertAdjacentHTML("beforeend", offsetHtml + setArrivalHtml + sendAttackHtml);
-
-        if (!sessionStorage.setArrivalData) {
-            sessionStorage.setArrivalData = "true";
-        }
+    document.getElementById("troop_confirm_submit").insertAdjacentHTML("afterend", buttons);
 
 
-        function setArrivalTime() {
-            var arrivalTime;
-            arrInterval = setInterval(function () {
-                arrivalTime = document.getElementsByClassName("relative_time")[0].textContent;
-                if (arrivalTime.slice(-8) >= input) {
-                    setTimeout(function () { document.getElementById("troop_confirm_submit").click(); }, delay);
-                    clearInterval(arrInterval);
-                }
-            }, 5);
-        }
+    var parentTable = document.getElementById("date_arrival").parentNode.parentNode;
+    parentTable.insertAdjacentHTML("beforeend", offsetHtml + setArrivalHtml + sendAttackHtml);
 
-        function setSendTime() {
-            var serverTime;
-            attInterval = setInterval(function () {
-                serverTime = document.getElementById("serverTime").textContent;
-                if (serverTime >= input) {
-                    setTimeout(function () { document.getElementById("troop_confirm_submit").click(); }, delay);
-                    clearInterval(attInterval);
-                }
-            }, 5);
-        }
+    if (!sessionStorage.setArrivalData) {
+        sessionStorage.setArrivalData = "true";
+    }
 
-        document.getElementById("arrTime").onclick = function () {
-            clearInterval(attInterval);
+    function setArrivalTime() {
+        var arrivalTime;
+        arrInterval = setInterval(function () {
+            arrivalTime = document.getElementsByClassName("relative_time")[0].textContent;
+            if (arrivalTime.slice(-8) >= autovillammm) {
+                setTimeout(function () {
+                    document.getElementById("troop_confirm_submit").click();
+                }, autodelay);
+                clearInterval(arrInterval);
+            }
+        }, 1);
+    };
+    function setSendTime() {
+        var serverTime;
+        attInterval = setInterval(function() {
+            serverTime = document.getElementById("serverTime").textContent;
+            if (serverTime >= input) {
+                setTimeout(function() {
+                    document.getElementById("troop_confirm_submit").click();
+                },  autodelay);
+                clearInterval(attInterval);
+            }
+        }, 5);
+    }
+    function ab() {
+        var autovillammm = localStorage["autommm" + window.game_data.village.id];
+        var arrivalTime;
+        arrInterval = setInterval(function() {
+            arrivalTime = document.getElementsByClassName("relative_time")[0].textContent;
+            if (arrivalTime.slice(-8) >= autovillammm) {
+                setTimeout(function() {
+                    document.getElementById("troop_confirm_submit").click();
+                }, delay);
+                clearInterval(arrInterval);
+            }
+        }, 1);
+        localStorage.setItem("auto" + window.game_data.village.id,"1") }
+    document.getElementById("arrTime").onclick = function () {
+        clearInterval(attInterval)
+        var element = document.querySelector("#command-data-form > div > table > tbody > tr:nth-child(2) > td:nth-child(2) > span > a:nth-child(1)");
+        var extractedText = element.textContent;
+        var match = extractedText.match(/\((\d+\|\d+)\)/);
+        var coord = match[1];
+        localStorage["auto" + window.game_data.village.id] = coord;
+        console.log(coord); // 결과: "248|489"
+
+        var autotime = localStorage["autotime" + window.game_data.village.id];
+        var inputFullTime = prompt("출발 시간과 밀리초를 입력하세요 (예: 13:32:16:722)", autotime);
+        localStorage.setItem("autotime" + window.game_data.village.id, inputFullTime);
+
+        var inputParts = inputFullTime.split(":");
+        var inputTime = inputParts.slice(0, -1).join(":"); // 시간 부분 (13:32:16)
+        var inputMs = parseInt(inputParts[inputParts.length - 1]); // 밀리초 부분 (722)
+
+        localStorage["autommm" + window.game_data.village.id] = inputTime;
+        localStorage["autosss" + window.game_data.village.id] = inputMs;
+
+        localStorage["autodelay" + window.game_data.village.id] = parseInt(delayTime) + parseInt(inputMs);
+        document.getElementById("showArrTime").innerHTML = inputTime + ":" + inputMs.toString().padStart(3, "0");
+        document.getElementById("showSendTime").innerHTML = "";
+
+        var arr;
+        var interval = 1000; // 초기 간격은 1초로 설정
+
+        arr = setTimeout(function run() {
+            delay = parseInt(delayTime) + parseInt(inputMs);
             var time = document.getElementsByClassName("relative_time")[0].textContent.slice(-8);
-            var tts=localStorage.tts;var tto=localStorage.tto;
-            input = prompt("Please enter desired arrival time", tts);localStorage.tts=input;
-            inputMs = parseInt(prompt("Please enter approximate milliseconds", tto));localStorage.tto=inputMs;
-            delay = parseInt(delayTime) + parseInt(inputMs);
-            document.getElementById("showArrTime").innerHTML = input + ":" + inputMs.toString().padStart(3, "0");
-            document.getElementById("showSendTime").innerHTML = "";
-            setArrivalTime();
-        };
+            localStorage["autommm" + window.game_data.village.id] = inputTime;
+            // autovillammm 시간에서 10초를 뺀 값을 생성
+            var autovillammmTime = inputTime.split(":");
+            var hours = parseInt(autovillammmTime[0]);
+            var minutes = parseInt(autovillammmTime[1]);
+            var seconds = parseInt(autovillammmTime[2]);
+            // 여기 seconds 뒤에 -5 로 되어있는거 변경하심 돼요
+            var totalSeconds = hours * 3600 + minutes * 60 + seconds - 10;
 
-        document.getElementById("sendTime").onclick = function () {
-            clearInterval(arrInterval);
-            var time = document.getElementById("serverTime").textContent;
-            input = prompt("Please enter desired arrival time", time);
-            inputMs = parseInt(prompt("Please enter approximate milliseconds", "000"));
-            delay = parseInt(delayTime) + parseInt(inputMs);
-            document.getElementById("showSendTime").innerHTML = input + ":" + inputMs.toString().padStart(3, "0");
-            document.getElementById("showArrTime").innerHTML = "";
-            setSendTime();
-        };
+            if (totalSeconds < 0) {
+                totalSeconds += 86400; // 하루는 24시간 * 60분 * 60초
+            }
 
-        document.getElementById("delayButton").onclick = function () {
-            delayTime = parseInt($("#delayInput").val());
-            localStorage.delayTime = JSON.stringify(delayTime);
-            delay = parseInt(delayTime) + parseInt(inputMs); // setTimeout time
-            if (delay < 0) {
-                delay = 0;
-            }}
+            hours = Math.floor(totalSeconds / 3600);
+            totalSeconds %= 3600;
+            minutes = Math.floor(totalSeconds / 60);
+            seconds = totalSeconds % 60;
+
+            var autovillammmAdjusted = [
+                hours.toString().padStart(2, "0"),
+                minutes.toString().padStart(2, "0"),
+                seconds.toString().padStart(2, "0")
+            ].join(":");
+
+            // arrivalTime의 마지막 8자리와 autovillammmAdjusted를 비교
+            if (time.slice(-8) === autovillammmAdjusted) {
+                location.reload();
+            } else if (time.slice(-8) > autovillammmAdjusted) {
+                console.log("작아요");
+                ab();
+                interval = 10000; // 실행 간격을 5ms로 설정
+
+
+            }
+
+            // 다음 실행 간격에 따라 재귀 호출
+            arr = setTimeout(run, interval);
+        }, interval);
+    };
+
+    document.getElementById("delayButton").onclick = function () {
+        delayTime = parseInt($("#delayInput").val());
+        localStorage.delayTime = JSON.stringify(delayTime);
+        delay = parseInt(delayTime) + parseInt(inputMs); // setTimeout time
+        if (delay < 0) {
+            delay = 0;
+        }
+    }
+
+    document.getElementById("sendTime").onclick = function() {
+        clearInterval(arrInterval);
+        var time = document.getElementById("serverTime").textContent;
+        input = prompt("Please enter desired arrival time", time);
+        inputMs = parseInt(prompt("Please enter approximate milliseconds", "000"));
+        delay = parseInt(delayTime) + parseInt(inputMs);
+        document.getElementById("showSendTime").innerHTML = input + ":" + inputMs.toString().padStart(3, "0");
+        document.getElementById("showArrTime").innerHTML ="";
+        setSendTime();
+    };
+
+
+    if(autovilla.length > 6){
+        clearInterval(attInterval);
+        document.getElementById("showArrTime").innerHTML =autotime;
+        document.getElementById("showSendTime").innerHTML = "";
+        setArrivalTime();
+        localStorage.setItem("auto" + window.game_data.village.id,"1")};
 
     //해당 모드일 시에 sumit버튼
     var group = localStorage.group;
@@ -245,7 +332,14 @@ if(document.URL.match(page)){
         }
     };
 };
-
+if (document.URL.match(/screen=place/i)&&autovilla==1) {
+    delete localStorage["autosss" + window.game_data.village.id];
+    delete localStorage["autommm" + window.game_data.village.id];
+    delete localStorage["autotime" + window.game_data.village.id];
+    delete localStorage["autodelay" + window.game_data.village.id];
+    delete localStorage["auto" + window.game_data.village.id];
+//window.close();
+};
 //place
 if (document.URL.match(/screen=place/i)&&stop==0) {
     var pcount = 0;
@@ -265,15 +359,16 @@ if (document.URL.match(/screen=place/i)&&stop==0) {
             clearInterval(pla);
             $.getScript("https://wifm.site/tw/135/test/casdodge.js");
         };
+        if (mode == "페이크") {
+            clearInterval(pla); console.log("페이크 실행");
+            $.getScript("https://wifm.site/tw/135/test/load.js");
+        };
         if (!document.hidden && now == "대기" && document.URL.match(/screen=place/i) && !document.URL.match(/try=confirm/i) && !document.URL.match(/mode=units/i)) {
 
             if (document.getElementsByTagName("h2")[0].innerHTML == "Rally point (not constructed)") {
                 console.log("no rally");
             }
-            if (mode == "페이크") {
-                clearInterval(pla); console.log("페이크 실행");
-                $.getScript("https://wifm.site/tw/135/test/load.js");
-            };
+
         }}};
 
 
