@@ -91,5 +91,5 @@ if (dip.length !== 5) {
             setTimeout(function(){document.forms[0].support.click();},1000);}else{console.log("좌표가 입력되지 않았습니다");
             document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1 COLOR="RED"> 좌표가 입력되지 않았습니다 새로고침 됩니다.  Mode='+mode+' now='+now+' RELOADING</FONT> ';setTimeout(function(){location.reload();;},Math.floor(Math.random() * 900)+1200);}
 
-    }else{console.log("닷지유닛이 없습니다");  localStorage["dodge"+window.game_data.village.id]="close";self.close();};}
-else{console.log("dip 가 close입니다"); localStorage["dodge"+window.game_data.village.id]="close";self.close();};
+    }else{console.log("닷지유닛이 없습니다");  localStorage["dodge"+window.game_data.village.id]="close";window.location.reload();};}
+else{console.log("dip 가 close입니다"); localStorage["dodge"+window.game_data.village.id]="close";window.location.reload();};
