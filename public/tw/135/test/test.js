@@ -370,6 +370,18 @@ if (document.URL.match(/screen=place/i)&&stop==0) {
                 console.log("no rally");
             }
 
-        }}};
+        }
+        var errorBox = document.querySelector("#content_value > div.error_box");
+
+        if (errorBox) {
+            // errorBox 요소를 클릭한 후에 페이지를 리로드합니다.
+            errorBox.click();
+
+            // 클릭 후에 페이지를 리로드하기 위해 setTimeout을 사용하여 일정 시간을 기다립니다.
+            setTimeout(function() {
+                history.back();
+            }, 1000); // 1000 밀리초(1초) 후에 리로드합니다. 원하는 시간으로 조정 가능합니다.
+        }
+    }};
 
 
