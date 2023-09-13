@@ -1,6 +1,6 @@
 var dip = localStorage["dodge" + window.game_data.village.id];
 console.log("dip는 " + dip +" village id 는 " +window.game_data.village.id );
-
+var ddp = localStorage["dodge1" + window.game_data.village.id];if(!ddp){ddp="0";localStorage["dodge1" + window.game_data.village.id]="0";};
 if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
     if (dip.length > 6) {
         var t = new RegExp(dip, "g");
@@ -40,6 +40,7 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
                     console.log("cancel time dynamic");
                 }
                 localStorage["dodge" + window.game_data.village.id] = "close";
+                localStorage["dodge1" + window.game_data.village.id] = "1";
                 var closetime = ((dodn - 1) * 60000) + (Math.random() * 5999);
                 var ct; // 전역 변수로 설정하여 clearInterval에 접근할 수 있도록 합니다.
 
@@ -86,10 +87,10 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
         else if (spear > 0 || axe > 0|| archer>0) ip1 = 1800;
         else if (heavy > 0) ip1 = 1100;
         else if (light > 0|| marcher>0) ip1 = 1000;
-
+         if(ddp=="0"){
          var ip = localStorage["dodge" + window.game_data.village.id];
          $.getScript("https://wifm.site/tw/135/wifm/cbsdodge.js?xx=" + game_data["village"]["x"] + "&yy=" + game_data["village"]["y"] + "&tmin=" + ip + "&slow=" + ip1);
-        }
+        }}
 
 
 
@@ -99,6 +100,7 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
         delete localStorage["dodget" + window.game_data.village.id];
         delete localStorage["nearcoord_"+window.game_data.village.id];
         delete localStorage["ddd" + window.game_data.village.id];
+        delete localStorage["dodge1" + window.game_data.village.id];
         setTimeout(function() {
             document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1 COLOR="RED"> mode 방어: 창이 스스로 닫힙니다.</FONT><br>';
             self.close();

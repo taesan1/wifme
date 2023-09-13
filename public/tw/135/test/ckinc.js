@@ -15,9 +15,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
     var del = Math.floor((Math.random() * 1000));
     var mode = localStorage.mode;var pid=window.game_data.player.id;
     var monitor_incoming = localStorage["monitor_incoming"];
-    if (!monitor_incoming) {
-        monitor_incoming = 30;
-    };
+    if (!monitor_incoming){monitor_incoming = 30;};
     var tim = "0",
         villy = "0",
         ap = "0",
@@ -77,7 +75,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var gomedium = /attack_medium/g.test(row.cells[0].innerHTML);
                         var golarge = /attack_large/g.test(row.cells[0].innerHTML);
                         var gosniped = /sniped/g.test(row.cells[0].innerHTML);
-                        var need = /need/g.test(row.cells[0].innerHTML);
+                        var need= /need/g.test(row.cells[0].innerHTML);
                         var need1 = /Need/g.test(row.cells[0].innerHTML);
                         var gg = /gg/g.test(row.cells[0].innerHTML);
                         var done = /done/g.test(row.cells[0].innerHTML);
