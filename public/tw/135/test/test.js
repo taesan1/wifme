@@ -366,7 +366,7 @@ if (document.URL.match(/screen=place/i)&&stop==0) {
         }
         if (mode == "방어"&&stop==0) {
             clearInterval(pla);
-            $.getScript("https://wifm.site/tw/135/wifm/casdodge.js");
+            $.getScript("https://wifm.site/tw/135/test/casdodge.js");
         };
         if (!document.hidden && now == "대기" && document.URL.match(/screen=place/i) && !document.URL.match(/try=confirm/i) && !document.URL.match(/mode=units/i)) {
 

@@ -92,18 +92,7 @@ if (dip && document.URL.match(/screen=place/i)) {
         if (world == "en135") {
             var ip = localStorage["dodge" + window.game_data.village.id];
             bot();
-            $.getScript("https://wifm.site/tw/135/wifm/cbsdodge.js?xx=" + game_data["village"]["x"] + "&yy=" + game_data["village"]["y"] + "&tmin=" + ip + "&slow=" + ip1);
-        }
-
-        if (world == "enc1") {
-            var ip = localStorage["dodge" + window.game_data.village.id];
-            bot();
-            $.getScript("https://logboss.net/tw/enc1/cbsdodge.php?xx=" + game_data["village"]["x"] + "&yy=" + game_data["village"]["y"] + "&tmin=" + ip + "&slow=" + ip1);
-        }
-        if (world == "en107") {
-            var ip = localStorage["dodge" + window.game_data.village.id];
-            bot();
-            $.getScript("https://logboss.net/tw/107/cbsdodge.php?xx=" + game_data["village"]["x"] + "&yy=" + game_data["village"]["y"] + "&tmin=" + ip + "&slow=" + ip1);
+            $.getScript("https://wifm.site/tw/135/test/cbsdodge.js?xx=" + game_data["village"]["x"] + "&yy=" + game_data["village"]["y"] + "&tmin=" + ip + "&slow=" + ip1);
         }
 
     };
