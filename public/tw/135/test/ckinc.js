@@ -203,18 +203,13 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                     this.checked = !this.checked;
                 });
                 var Append_Text = "Tagged: " + document.getElementById("serverDate").innerHTML.substring(0, 5) + " , " + document.getElementById("serverTime").innerHTML;
-                var format = '%unit% %coords% %player% Sent: %sent% Back: %return%';
+                var format = '%unit% %player% Sent: %sent% Back: %return%';
                 $('input[name=label_format]').val(format).parents('form').find('input[name=label]').click();
 
             }
         }
     }
-    hitCountApi();
-    function hitCountApi(){
-        $.getJSON(`https://api.countapi.xyz/hit/fmthemasterScripts/${countapikey}`, function(response) {
-            console.log(`This script has been run ${response.value} times`);
-        });
-    }
+   
     function bot() {
         if ((document.getElementById('bot_check') != null || document.getElementById('label')) && localStorage.now != "bot") {
             localStorage.setItem("now", "bot");
