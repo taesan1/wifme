@@ -130,7 +130,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         ii = i + 1;
 
                         //노블
-                        if ((gonoble || gonoble1)&& !done&&!done1 ){
+                        if (gonoble1&& !done&&!done1 ){
                             var time = $(row).find("td").eq(5).html();
                             if (tim == "0") {
                                 tim = time.split("<")[0];
@@ -157,7 +157,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
 
                         var stop=localStorage.stop;
                         //닷지
-                        if (!gostack1 &&!gostack && !gododged && !gosniped && !done && !done1 && !fake1 && !gonoble && !gonoble1&&stop==0) {
+                        if (!gostack1 &&!gostack && !gododged && !gosniped && !done && !done1 && !fake1 && !gonoble && !gonoble1&&stop==0&&mode=="방어"){
                             if (count < 1 && lt3 < dodn) {
                                 count++;
                                 $(row).find('.rename-icon').click();
@@ -235,7 +235,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
         if (localStorage.now !== "대기") {
             UI.InfoMessage('잠시 대기 현재는 ' + localStorage.now, 16000);
         } else {
-            if (pt > Math.floor(Math.random() * 20) + 80) {
+            if (pt > Math.floor(Math.random() * 20) + 50) {
                 window.location.reload();
             };
             if (incoming > ia || tag == 1) {
