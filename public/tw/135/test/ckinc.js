@@ -97,7 +97,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var fake1 = /fake/g.test(row.cells[0].innerHTML);
 
                         if (goattack) {
-                            console.log("Attack");
+
                             tag = 1;
                             var time = $(row).find("td").eq(5).html();
                             if (tim == "0") {
@@ -113,7 +113,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                             if (villy == "0") {
                                 villy = vill.split("&")[0];
                             }
-                            console.log(villy);
+                            console.log("빌리지: "+villy+" 에서 Attack 발견 태그를 시작합니다."+tag);
                         };
                         var village = row.cells[1].innerHTML;
                         village = village.split("village=")[1];
@@ -209,7 +209,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             }
         }
     }
-   
+
     function bot() {
         if ((document.getElementById('bot_check') != null || document.getElementById('label')) && localStorage.now != "bot") {
             localStorage.setItem("now", "bot");
