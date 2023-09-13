@@ -38,7 +38,8 @@ else{localStorage.setItem("stop","0"); UI.SuccessMessage('시작 ',1000);};
         var group = localStorage.group;
         g1 = prompt("페이크를 보낼 그룹의 넘버를 입력하세요 = ", group);
         localStorage.setItem("group", g1);
-        localStorage.setItem("mode", "페이크")
+        localStorage.setItem("mode", "페이크");
+        UI.SuccessMessage('페이크 모드 ',1000);
     } else if(mdddd==2){
         // 방어 로직
         localStorage.setItem("mode", "방어");
@@ -50,16 +51,17 @@ else{localStorage.setItem("stop","0"); UI.SuccessMessage('시작 ',1000);};
             monitor_incoming = 45;
         }
         monitor_incoming = prompt("모니터링 새로고침 (5~55초 추천)", monitor_incoming);
-        localStorage["monitor_incoming"] = monitor_incoming; }else if(mdddd==3){
-        localStorage.setItem("now", "대기");localStorage.setItem("mode", "대기");UI.SuccessMessage('모드와 상태가 초기화 되었습니다. ',1000); };
-
-} else if (mdd == 3) {
+        localStorage["monitor_incoming"] = monitor_incoming;
+    UI.SuccessMessage('방어 모드 ',1000);
+    }else if(mdddd==3){
+        localStorage.setItem("now", "대기");localStorage.setItem("mode", "대기");UI.SuccessMessage('모드와 상태가 초기화 되었습니다. ',1000)
+} }else if (mdd == 3) {
     //페이크 그룹 설정
     $.getScript("https://wifm.site/tw/setcoord.js");
 }else if (mdd == 4) {
     var fg = localStorage.fg;
     g1 = prompt("동줍에 사용할 그룹의 id를 입력해주세요 URL에 group= 다음 숫자입니다", fg);
-    localStorage.setItem("fg", g1);
+    localStorage.setItem("fg", g1);UI.SuccessMessage('동줍 그룹이 설정되었습니다 ',1000);;
 }else if (mdd == 5) {
     var old = localStorage.old;
     old = prompt("어떤 리네임으로 하시겠습니까?", old);
