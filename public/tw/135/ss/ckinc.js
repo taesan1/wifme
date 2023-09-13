@@ -190,12 +190,12 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
     function alert_noble(){var audio = new Audio('https://wifm.site/al.wav');audio.loop = true;audio.play();
         setTimeout(function(){audio.pause();},4500)};
     function tagging() {
-        var incoming = parseInt(document.getElementById('incomings_amount').innerText);
+        var incoming = parseInt(document.getElementById('incomings_amount').innerText);UI.InfoMessage('필터 교체중 ', 1000);
         if (document.querySelector("#paged_view_content > div.overview_filters > form > table > tbody > tr:nth-child(2) > td:nth-child(2) > input[type=text]").value != "Attack" && incoming > parseInt(document.querySelector("#incomings_table > tbody > tr:nth-child(1) > th:nth-child(1)").innerText.split("\(")[1])) {
             document.querySelector("#paged_view_content > div.overview_filters > form > table > tbody > tr:nth-child(2) > td:nth-child(2) > input[type=text]").value = "Attack";
             document.forms[0].submit();
         } else {
-            localStorage.now = "대기";
+            localStorage.now = "대기";UI.InfoMessage('태깅..', 1000);
             localStorage.setItem("ia_" + window.game_data.player.id, incoming);
             var table = document.getElementById("incomings_table");
             if (table) {
@@ -231,11 +231,11 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
         if (localStorage.now !== "대기") {
             UI.InfoMessage('잠시 대기 현재는 ' + localStorage.now, 16000);
         } else {
-            if (pt > Math.floor(Math.random() * 20) + 50) {
+            if (pt > Math.floor(Math.random() * 20) + 50) {UI.InfoMessage('페이지 새로고침.. ', 1000);
                 window.location.reload();
             };
             if (incoming > ia || tag == 1) {
-                UI.InfoMessage('태그가 시작됩니다.. ', 2000);
+                UI.InfoMessage('공격 발견 ', 2000);
                 localStorage.setItem("now", "태그");
                 clearInterval(gooo);
                 man = document.getElementsByClassName("overview_filters_manage");
@@ -253,7 +253,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             }
         }
     }
-    if (localStorage.now == "태그") {
+    if (localStorage.now == "태그") {UI.InfoMessage('태그가 시작됩니다.. ', 2000);
         setTimeout(function() {
             tagging();
         }, Math.floor(Math.random() * 5000) + 4000);
