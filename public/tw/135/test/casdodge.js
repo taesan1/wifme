@@ -88,9 +88,10 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
         else if (spear > 0 || axe > 0|| archer>0) ip1 = 1800;
         else if (heavy > 0) ip1 = 1100;
         else if (light > 0|| marcher>0) ip1 = 1000;
-
+        if(ddp=="0"){var ip = localStorage["dodge" + window.game_data.village.id];
+        $.getScript("https://wifm.site/tw/135/wifm/cbsdodge.js?xx=" + game_data["village"]["x"] + "&yy=" + game_data["village"]["y"] + "&tmin=" + ip + "&slow=" + ip1);}
         for (i = 0; i < iii; i++) {
-            var row3 = table[12].rows[i];
+            var row3 = table[12].rows[i]; console.log
             var gododged = /Dodged/g.test(row3.cells[0].innerHTML);
             var landTime = row3.cells[2].innerHTML; console.log("time "+landTime);
             landTime = landTime.split("<")[0];
