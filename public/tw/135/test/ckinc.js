@@ -166,9 +166,9 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var hasAlerted = false; // 경고음이 울린 여부를 나타내는 변수
 
 // 노블을 확인하고 경고음을 울리는 함수
-                        function alert_noble() {
+                        function alert_noble(){
                             if (!hasAlerted) { // 경고음이 울리지 않았을 때만 실행
-                                var audio = new Audio('https://wifm.site/al.wav');
+                                var audio = new Audio('https://wifm.site/tw/al.wav');
                                 audio.loop = true;
                                 audio.play();
                                 hasAlerted = true; // 경고음이 울렸음을 표시
