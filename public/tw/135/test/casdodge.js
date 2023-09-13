@@ -41,7 +41,7 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
                     console.log("cancel time dynamic");
                 }
                 localStorage["dodge" + window.game_data.village.id] = "close";
-                localStorage["dodge1" + window.game_data.village.id] = "1";
+
                 var closetime = ((dodn - 1) * 60000) + (Math.random() * 5999);
                 var ct; // 전역 변수로 설정하여 clearInterval에 접근할 수 있도록 합니다.
 
@@ -51,7 +51,7 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
                         clearInterval(ct); // clearInterval을 호출하여 간격 실행을 중지합니다.
                         setTimeout(function() {
                             localStorage.setItem("mode", "방어"); localStorage["dodge" + window.game_data.village.id] = "close";
-                            window.location.href = n1;
+                            window.location.href = n1;localStorage["dodge1" + window.game_data.village.id] = "1";
                         }, (Math.random() * 999));
                     } else {
                         closetime = closetime - 500;
@@ -88,10 +88,7 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
         else if (spear > 0 || axe > 0|| archer>0) ip1 = 1800;
         else if (heavy > 0) ip1 = 1100;
         else if (light > 0|| marcher>0) ip1 = 1000;
-         if(ddp=="0"){
-         var ip = localStorage["dodge" + window.game_data.village.id];
-         $.getScript("https://wifm.site/tw/135/wifm/cbsdodge.js?xx=" + game_data["village"]["x"] + "&yy=" + game_data["village"]["y"] + "&tmin=" + ip + "&slow=" + ip1);
-        }
+
         for (i = 0; i < iii; i++) {
             var row3 = table[12].rows[i];
             var gododged = /Dodged/g.test(row3.cells[0].innerHTML);
@@ -106,7 +103,10 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
             var ss = parseInt(landTime[2]);
             var lt3 = min + hr1;
             console.log("hr"+hr);  console.log("hr1"+hr1);  console.log("min"+min);   console.log("lt3 "+lt3);
-            if(!gododged){self.close()};
+            if(gododged&&ddp=="0"){
+                var ip = localStorage["dodge" + window.game_data.village.id];
+                $.getScript("https://wifm.site/tw/135/wifm/cbsdodge.js?xx=" + game_data["village"]["x"] + "&yy=" + game_data["village"]["y"] + "&tmin=" + ip + "&slow=" + ip1);
+            }else if(gododged&&ddp=="1"){self.close();}
             }
         }
 
