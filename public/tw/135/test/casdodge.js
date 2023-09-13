@@ -2,7 +2,7 @@ var dip = localStorage["dodge" + window.game_data.village.id];
 console.log("dip는 " + dip +" village id 는 " +window.game_data.village.id );
 var ddp = localStorage["dodge1" + window.game_data.village.id];if(!ddp){ddp="0";localStorage["dodge1" + window.game_data.village.id]="0";};
 if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
-    if (dip.length > 6) {
+    if (dip.length > 6) {error()
         var t = new RegExp(dip, "g");
         console.log(t);
         var t1 = /Support/g;
@@ -66,9 +66,9 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
     localStorage.setItem("now", "대기");
 
     }
+    error()
 
-
-    if (dip.length < 5) {
+    if (dip.length < 5) {error()
         var light = parseInt(document.forms[0].light.nextSibling.nextSibling.innerHTML.match(/\d+/));
         var catapult = parseInt(document.forms[0].catapult.nextSibling.nextSibling.innerHTML.match(/\d+/));
         var archer = parseInt(document.forms[0].archer.nextSibling.nextSibling.innerHTML.match(/\d+/));
@@ -120,7 +120,7 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
 
 
 
-    if (dip == "close") {
+    if (dip == "close") {error()
         delete localStorage["dodge" + window.game_data.village.id];
         delete localStorage["dodger" + window.game_data.village.id];
         delete localStorage["dodget" + window.game_data.village.id];
@@ -132,18 +132,18 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
             self.close();
         }, 4000);
     };
+ function error() {
+     var errorBox = document.querySelector("#content_value > div.error_box");
 
-    var errorBox = document.querySelector("#content_value > div.error_box");
+     if (errorBox) {
+         // errorBox 요소를 클릭한 후에 페이지를 리로드합니다.
+         errorBox.click();
 
-    if (errorBox) {
-        // errorBox 요소를 클릭한 후에 페이지를 리로드합니다.
-        errorBox.click();
-
-        // 클릭 후에 페이지를 리로드하기 위해 setTimeout을 사용하여 일정 시간을 기다립니다.
-        setTimeout(function() {
-            history.back();
-        }, 1000); // 1000 밀리초(1초) 후에 리로드합니다. 원하는 시간으로 조정 가능합니다.
-    }
-
+         // 클릭 후에 페이지를 리로드하기 위해 setTimeout을 사용하여 일정 시간을 기다립니다.
+         setTimeout(function () {
+             history.back();
+         }, 1000); // 1000 밀리초(1초) 후에 리로드합니다. 원하는 시간으로 조정 가능합니다.
+     }
+ }
 }
 
