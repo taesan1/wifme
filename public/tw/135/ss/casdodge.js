@@ -107,4 +107,8 @@ if (dip && document.URL.match(/screen=place/i)) {
             self.close();
         }, 4000);
     };
+    if (dip =="undefined"){ setTimeout(function() {
+        document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1 COLOR="RED"> mode 방어: 창이 스스로 닫힙니다.</FONT><br>';
+        self.close();
+    }, 4000);}
 }
