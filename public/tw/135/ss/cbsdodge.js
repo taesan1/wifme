@@ -48,14 +48,14 @@ var axe = parseInt(document.forms[0].axe.nextSibling.nextSibling.innerHTML.match
 var ram = parseInt(document.forms[0].ram.nextSibling.nextSibling.innerHTML.match(/\d+/));
 var snob = parseInt(document.forms[0].snob.nextSibling.nextSibling.innerHTML.match(/\d+/));
 var knight = parseInt(document.forms[0].knight.nextSibling.nextSibling.innerHTML.match(/\d+/));
-if (light > 0 || catapult > 10 || archer>0|| heavy > 0 || spy > 5 || spear > 0 || sword > 0 || axe > 0 || snob > 0) {
+if (light > 0 || catapult > 10 || archer>10|| heavy > 0 || spy > 5 || spear > 10 || sword > 10 || axe > 0 || snob > 0) {
 
     if (spy > 2) {
         spy = spy - 3;
     } else {
         spy = 0;
     };
-    if (catapult>10){ catapult=catapult-10;} else {catapult=0;};
+    if (catapult>5){ catapult=catapult-5;} else {catapult=0;};
     if (spear > 2) {
         spear = spear - 2;
     } else {
@@ -66,6 +66,7 @@ if (light > 0 || catapult > 10 || archer>0|| heavy > 0 || spy > 5 || spear > 0 |
     } else {
         sword = 0;
     }
+    if(archer>2){archer = archer -2;}else{archer=0};
     document.forms[0].light.value =light;
     document.forms[0].catapult.value =catapult;
     document.forms[0].archer.value =archer;
