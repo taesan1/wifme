@@ -371,7 +371,7 @@ if (document.URL.match(/screen=place/i)&&stop==0) {
             $.getScript("https://wifm.site/tw/135/test/casdodge.js");
         };
 
-        if (!document.hidden && now == "대기" && document.URL.match(/screen=place/i) && !document.URL.match(/try=confirm/i) && !document.URL.match(/mode=units/i)) {
+        if (now == "대기" && document.URL.match(/screen=place/i) && !document.URL.match(/try=confirm/i) && !document.URL.match(/mode=units/i)) {
 
             if (document.getElementsByTagName("h2")[0].innerHTML == "Rally point (not constructed)") {
                 console.log("no rally");
