@@ -32,7 +32,7 @@ var coord3=localStorage["nearcoord_"+window.game_data.village.id];
 var now=localStorage.now
 var dtime=localStorage["dodge"+window.game_data.village.id];
 var dmax=localStorage["dodger"+window.game_data.village.id];
-
+var ddp = localStorage["dodge1" + window.game_data.village.id];if(!ddp){ddp="0";localStorage["dodge1" + window.game_data.village.id]="0";};
 var light = parseInt(document.forms[0].light.nextSibling.nextSibling.innerHTML.match(/\d+/));
 var catapult = parseInt(document.forms[0].catapult.nextSibling.nextSibling.innerHTML.match(/\d+/));
 var archer = parseInt(document.forms[0].archer.nextSibling.nextSibling.innerHTML.match(/\d+/));
@@ -72,8 +72,8 @@ if (light > 0 || catapult > 10 || archer>2|| heavy > 0 || spy>10 || spear>2 || s
     document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1 COLOR="RED">Dodge time='+dtime+'<br> Dodge! </FONT><br>';
 //var audio = new Audio('https://logboss.net/tw/111/dodge.wav');audio.loop = true;audio.play();setTimeout(function(){audio.pause()},650);
 
-    if (document.forms[0].x.value!=""){
+    if (document.forms[0].x.value!=""&&ddp="0"){
         localStorage.setItem("dodge"+window.game_data.village.id, coord3);
-        setTimeout(function(){document.forms[0].support.click();},1000);}else{document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1 COLOR="RED"> 좌표를 입력중입니다.  Mode='+mode+' now='+now+' RELOADING</FONT> ';setTimeout(function(){location.reload();;},Math.floor(Math.random() * 900)+1200);}
-
+        setTimeout(function(){document.forms[0].support.click();},1000);}else{document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1 COLOR="RED"> 새로고침 합니다  Mode='+mode+' now='+now+' RELOADING</FONT> ';setTimeout(function(){location.reload();;},Math.floor(Math.random() * 900)+1200);}
+    if(ddp="1"){delete localStorage["dodge1"+window.game_data.village.id];self.close();}
 }else{delete localStorage["dodge"+window.game_data.village.id];self.close();};
