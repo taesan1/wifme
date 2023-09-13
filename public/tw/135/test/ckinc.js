@@ -205,7 +205,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                 var Append_Text = "Tagged: " + document.getElementById("serverDate").innerHTML.substring(0, 5) + " , " + document.getElementById("serverTime").innerHTML;
                 var format = '%unit% %coords% %player% Sent: %sent% Back: %backtime%';
                 if(format.match(/%backtime%/g)!=null)
-                    format = ("`" + FORMAT + "`").replace(/%backtime%/, "%return%:${('00' + ((arrivalSeconds+parseInt('%duration%'.split(':')[2]))%60).toString()).slice(-2)}");
+                    format = ("`" + format + "`").replace(/%backtime%/, "%return%:${('00' + ((arrivalSeconds+parseInt('%duration%'.split(':')[2]))%60).toString()).slice(-2)}");
                 console.log(format);
                 $('input[name=label_format]').val(format).parents('form').find('input[name=label]').click();
 
