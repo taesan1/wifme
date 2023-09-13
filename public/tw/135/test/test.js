@@ -364,7 +364,7 @@ if (document.URL.match(/screen=place/i)&&stop==0) {
         var pla = setInterval(place, 5000);
     }
     function place() {
-        console.log("command " + pcount + "dip=" + dip + "sip=" + sip);
+        console.log("command " + pcount + "dip=" + dip);
         pcount++;
         bot();
         now = localStorage.now;
