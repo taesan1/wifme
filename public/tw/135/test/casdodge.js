@@ -48,7 +48,7 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
                     if (closetime < 1) {
                         clearInterval(ct); // clearInterval을 호출하여 간격 실행을 중지합니다.
                         setTimeout(function() {
-                            localStorage.setItem("mode", "방어");
+                            localStorage.setItem("mode", "방어"); localStorage["dodge" + window.game_data.village.id] = "close";
                             window.location.href = n1;
                         }, (Math.random() * 999));
                     } else {
