@@ -110,7 +110,7 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
             }
         }
 
-    }
+
 
 
 
