@@ -56,11 +56,11 @@ if (dip && document.URL.match(/screen=place/i)) {
                             window.location.href = n1;
                         }, (Math.random() * 999));
                     } else {
-                        closetime = closetime - 1000;
+                        closetime = closetime - 500;
                     }
                 }
 
-                ct = setInterval(canceldodge, 1000);
+                ct = setInterval(canceldodge, 500);
             }
         };
         localStorage.setItem("now", "대기");
