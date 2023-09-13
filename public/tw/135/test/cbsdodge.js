@@ -49,8 +49,8 @@ var snob = parseInt(document.forms[0].snob.nextSibling.nextSibling.innerHTML.mat
 var knight = parseInt(document.forms[0].knight.nextSibling.nextSibling.innerHTML.match(/\d+/));
 if (light > 0 || catapult > 10 || archer>0|| heavy > 0 || spy > 5 || spear > 0 || sword > 0 || axe > 0 || snob > 0) {
 
-    if (spy > 0) {
-        spy = spy - 1;
+    if (spy > 2) {
+        spy = spy - 3;
     } else {
         spy = 0;
     };
