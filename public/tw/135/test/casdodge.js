@@ -90,6 +90,11 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
         else if (light > 0|| marcher>0) ip1 = 1000;
         if(ddp=="0"){var ip = localStorage["dodge" + window.game_data.village.id];
         $.getScript("https://wifm.site/tw/135/wifm/cbsdodge.js?xx=" + game_data["village"]["x"] + "&yy=" + game_data["village"]["y"] + "&tmin=" + ip + "&slow=" + ip1);}
+
+        var table = document.getElementsByClassName("vis");
+        var iii = table[12].rows.length;
+        var count="0";var label = "Dodged"
+        var dod=localStorage.dodn;
         for (i = 0; i < iii; i++) {
             var row3 = table[12].rows[i]; console.log("row3"+row3);
             var gododged = /Dodged/g.test(row3.cells[0].innerHTML);console.log("gododged"+gododged);
