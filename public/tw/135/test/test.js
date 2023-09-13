@@ -325,7 +325,8 @@ if(document.URL.match(page)){
     var dodgevilla = localStorage["dodge" + window.game_data.village.id];
 
     if (mode == "방어"&&stop==0) {
-        if (dodgevilla !== undefined&&dodgevilla.length > 6) {
+        var ddp = localStorage["dodge1" + window.game_data.village.id];if(!ddp){ddp="0";localStorage["dodge1" + window.game_data.village.id]="0";};
+        if (dodgevilla !== undefined&&dodgevilla.length > 6&&ddp=="0") {
             setTimeout(function () {
                 document.forms[0].troop_confirm_submit.click();
             }, (1 + Math.random() * 3) * 1000);
