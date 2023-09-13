@@ -1,3 +1,6 @@
+console.log();
+console.log('Error: No Coords Found');
+
 async function fnFillRallyPoint() {
     var sitter = "";
     var link = window.location.href;
@@ -17,8 +20,7 @@ async function fnFillRallyPoint() {
     if (f.length > 0) {
         var crd = f[0].innerText;
         var coord3 = crd.match(/\(([^)]+)\)/)[1]; // 괄호 안의 내용 추출
-        localStorage.setItem("nearcoord_"+window.game_data.village.id, coord3);
-        localStorage.setItem("dodge"+window.game_data.village.id, coord3);
+        localStorage.setItem("nearcoord_"+window.game_data.village.id, coord3)
         console.log(coord3);
     }
 
@@ -27,13 +29,12 @@ async function fnFillRallyPoint() {
     document.forms[0].x.value = coordSplit[0];
     document.forms[0].y.value = coordSplit[1];
 }
-fnFillRallyPoint();
+
 var coord3=localStorage["nearcoord_"+window.game_data.village.id];
-var sent="0"
 var now=localStorage.now
 var dtime=localStorage["dodge"+window.game_data.village.id];
 var dmax=localStorage["dodger"+window.game_data.village.id];
-var ddp = localStorage["dodge1" + window.game_data.village.id];if(!ddp){ddp="0";localStorage["dodge1" + window.game_data.village.id]="0";};
+
 var light = parseInt(document.forms[0].light.nextSibling.nextSibling.innerHTML.match(/\d+/));
 var catapult = parseInt(document.forms[0].catapult.nextSibling.nextSibling.innerHTML.match(/\d+/));
 var archer = parseInt(document.forms[0].archer.nextSibling.nextSibling.innerHTML.match(/\d+/));
@@ -46,9 +47,9 @@ var axe = parseInt(document.forms[0].axe.nextSibling.nextSibling.innerHTML.match
 var ram = parseInt(document.forms[0].ram.nextSibling.nextSibling.innerHTML.match(/\d+/));
 var snob = parseInt(document.forms[0].snob.nextSibling.nextSibling.innerHTML.match(/\d+/));
 var knight = parseInt(document.forms[0].knight.nextSibling.nextSibling.innerHTML.match(/\d+/));
-if (light > 5 || catapult > 10 || archer>10|| heavy > 5 || spear>10 || sword>10 || axe > 10 || snob > 0) {
+if (light > 0 || catapult > 10 || archer>0|| heavy > 0 || spy > 5 || spear > 0 || sword > 0 || axe > 0 || snob > 0) {
 
-    if (spy > 1) {
+    if (spy > 0) {
         spy = spy - 1;
     } else {
         spy = 0;
@@ -64,8 +65,6 @@ if (light > 5 || catapult > 10 || archer>10|| heavy > 5 || spear>10 || sword>10 
     } else {
         sword = 0;
     }
-
-
     document.forms[0].light.value =light;
     document.forms[0].catapult.value =catapult;
     document.forms[0].archer.value =archer;
@@ -78,18 +77,16 @@ if (light > 5 || catapult > 10 || archer>10|| heavy > 5 || spear>10 || sword>10 
     document.forms[0].ram.value =ram;
     document.forms[0].snob.value =snob;
     document.forms[0].knight.value =knight;
-    sent="1";
+
     if(dmax==1){document.getElementById('selectAllUnits').click();};
 
 
     document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1 COLOR="RED">Dodge time='+dtime+'<br> Dodge! </FONT><br>';
 //var audio = new Audio('https://logboss.net/tw/111/dodge.wav');audio.loop = true;audio.play();setTimeout(function(){audio.pause()},650);
+    fnFillRallyPoint();
 
-    if(document.forms[0].x.value!=""){
-        if(ddp="0"){
-        localStorage["dodge"+window.game_data.village.id]= coord3
-        setTimeout(function(){document.forms[0].support.click();},1000);}
-        else if(ddp="1"){
-        delete localStorage["dodge1"+window.game_data.village.id];self.close();}}else{
-        document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1 COLOR="RED"> 새로고침 합니다  Mode='+mode+' now='+now+' RELOADING</FONT> ';setTimeout(function(){location.reload();;},Math.floor(Math.random() * 900)+1200);}
+    if (document.forms[0].x.value!=""){
+        localStorage.setItem("dodge"+window.game_data.village.id, coord3);
+        setTimeout(function(){document.forms[0].support.click();},1000);}else{document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1 COLOR="RED"> 좌표가 입력되지 않았습니다 새로고침 됩니다.  Mode='+mode+' now='+now+' RELOADING</FONT> ';setTimeout(function(){location.reload();;},Math.floor(Math.random() * 900)+1200);}
+
 }else{delete localStorage["dodge"+window.game_data.village.id];self.close();};

@@ -325,24 +325,28 @@ if(document.URL.match(page)){
     var dodgevilla = localStorage["dodge" + window.game_data.village.id];
 
     if (mode == "방어"&&stop==0) {
-        var ddp = localStorage["dodge1" + window.game_data.village.id];if(!ddp){ddp="0";localStorage["dodge1" + window.game_data.village.id]="0";};
-        if (dodgevilla !== undefined&&dodgevilla.length > 6&&ddp=="0") {
+        if (dodgevilla.length > 6) {
             setTimeout(function () {
                 document.forms[0].troop_confirm_submit.click();
             }, (1 + Math.random() * 3) * 1000);
         }
-    };
-    var errorBox = document.querySelector("#content_value > div.error_box");
-    if (errorBox) {
-        // errorBox 요소를 클릭한 후에 페이지를 리로드합니다.
-        errorBox.click();
-
-        // 클릭 후에 페이지를 리로드하기 위해 setTimeout을 사용하여 일정 시간을 기다립니다.
-        setTimeout(function() {
-            history.back();
-        }, 1000); // 1000 밀리초(1초) 후에 리로드합니다. 원하는 시간으로 조정 가능합니다.
     }
-};
+
+    ;
+    if (mode == "팽"&&stop==0) {
+        document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1"> 팽 그룹= ' + group + '</FONT><br>';
+        setTimeout(function () {
+            document.forms[0].troop_confirm_submit.click();
+        }, del)
+    }
+    if (mode == "뉴크"&&stop==0) {
+        document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1"> 뉴크 그룹= ' + group + '</FONT><br>';
+        setTimeout(function () {
+            document.forms[0].troop_confirm_submit.click();
+        }, del)
+    }
+
+}
 if (document.URL.match(/screen=place/i)&&autovilla==1) {
     delete localStorage["autosss" + window.game_data.village.id];
     delete localStorage["autommm" + window.game_data.village.id];
@@ -356,32 +360,36 @@ if (document.URL.match(/screen=place/i)&&stop==0) {
     var pcount = 0;
     place();
     dip = localStorage["dodge" + window.game_data.village.id];
-    if ((!dip || dip == undefined)){
+    if ((!dip || dip == undefined)) {
         var pla = setInterval(place, 5000);
     }
     function place() {
-        console.log("command " + pcount + "dip=" + dip );
-        pcount++; console.log("플레이스 카운트: "+pcount);
+        console.log("command " + pcount + "dip=" + dip + "sip=" + sip);
+        pcount++;
         bot();
         now = localStorage.now;
         document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1>  현재 모드는 ' + mode + ' 현재 상태는 ' + now + '</FONT> '
 
+        if (document.URL.match(/screen=place/i) && now == "10") {
+            console.log("10");
+            window.top.UI.InfoMessage('상태 초기화 중', 3000);
+            setTimeout(function() {
+                localStorage.setItem("now", "대기");
+            }, 1200);
+        }
         if (mode == "방어"&&stop==0) {
             clearInterval(pla);
-            $.getScript("https://wifm.site/tw/135/test/casdodge.js");
+            $.getScript("https://wifm.site/tw/135/wifm/casdodge.js");
         };
-
-        if (now == "대기" && document.URL.match(/screen=place/i) && !document.URL.match(/try=confirm/i) && !document.URL.match(/mode=units/i)) {
+        if (!document.hidden && now == "대기" && document.URL.match(/screen=place/i) && !document.URL.match(/try=confirm/i) && !document.URL.match(/mode=units/i)) {
 
             if (document.getElementsByTagName("h2")[0].innerHTML == "Rally point (not constructed)") {
                 console.log("no rally");
             }
             if (mode == "페이크") {
                 clearInterval(pla); console.log("페이크 실행");
-                $.getScript("https://wifm.site/tw/135/test/load.js");
+                $.getScript("https://wifm.site/tw/135/wifm/load.js");
             };
-        }
-
-    }};
+        }}};
 
 
