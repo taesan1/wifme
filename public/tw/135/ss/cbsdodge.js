@@ -1,6 +1,7 @@
 console.log();
 console.log('Error: No Coords Found');
-if (dip.length < 5&&dip.length >6) {
+var dip=localStorage["dodge"+window.game_data.village.id];
+if (dip.length !== 5) {
 async function fnFillRallyPoint() {
     var sitter = "";
     var link = window.location.href;
