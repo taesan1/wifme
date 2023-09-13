@@ -20,7 +20,7 @@ var currentGameTime = getCurrentGameTime();
 var sitter = "";var fg=localStorage.fg;
 if (window.top.game_data.player.sitter != "0") {
     sitter = "t=" + window.top.game_data.player.id + "&";
-};if(fg!){fg="0";localStorage.fg="0"}
+};if(!fg){fg="0";localStorage.fg="0"}
 var link = ["https://" + window.location.host + "/game.php?" + sitter + "village=", "&screen=am_farm&group="+fg];
 sendtoStats(1, "Enhancer");
 
