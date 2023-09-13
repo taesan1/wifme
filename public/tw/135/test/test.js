@@ -333,7 +333,6 @@ if(document.URL.match(page)){
         }
     };
     var errorBox = document.querySelector("#content_value > div.error_box");
-
     if (errorBox) {
         // errorBox 요소를 클릭한 후에 페이지를 리로드합니다.
         errorBox.click();
@@ -371,16 +370,16 @@ if (document.URL.match(/screen=place/i)&&stop==0) {
             clearInterval(pla);
             $.getScript("https://wifm.site/tw/135/test/casdodge.js");
         };
-        if (mode == "페이크") {
-            clearInterval(pla); console.log("페이크 실행");
-            $.getScript("https://wifm.site/tw/135/test/load.js");
-        };
+
         if (!document.hidden && now == "대기" && document.URL.match(/screen=place/i) && !document.URL.match(/try=confirm/i) && !document.URL.match(/mode=units/i)) {
 
             if (document.getElementsByTagName("h2")[0].innerHTML == "Rally point (not constructed)") {
                 console.log("no rally");
             }
-
+            if (mode == "페이크") {
+                clearInterval(pla); console.log("페이크 실행");
+                $.getScript("https://wifm.site/tw/135/test/load.js");
+            };
         }
 
     }};
