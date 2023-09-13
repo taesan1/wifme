@@ -190,7 +190,6 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             document.forms[0].submit();
         } else {
             localStorage.now = "대기";
-            localStorage.setItem("ia_" + window.game_data.player.id, incoming);
             var table = document.getElementById("incomings_table");
             if (table) {
                 $('input:checkbox').each(function() {
@@ -215,11 +214,12 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
         dd = Date.parse(Date());
         localStorage.incoming_date = dd;
         UI.InfoMessage('Monitor', 1000);
+        var ia=localStorage["ia_"+window.game_data.player.id];
         pt++;
         man = document.getElementsByClassName("overview_filters_manage");
         man[0].innerText = "Manage filters         닷지 " + dodn + " 분 / 모니터링 " + ia + " Incoming //새로고침=" + pt + " // 매 " + parseInt(mon / 1000) + " 초 //현재 모드는 "+mode+"  현재 상태는 "+ now;
-        var incoming = parseInt(document.getElementById('incomings_amount').innerText);console.log("incoming은"+incoming+"ia는"+ia);
-        var ia=localStorage["ia_"+pid];
+        var incoming = parseInt(document.getElementById('incomings_amount').innerText);console.log("incoming은"+incoming+"ia는 "+ia);
+
         if (localStorage.now !== "대기") {
             UI.InfoMessage('잠시 대기 현재는 ' + localStorage.now, 16000);
         } else {
