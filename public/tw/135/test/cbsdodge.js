@@ -77,12 +77,7 @@ if (light > 0 || catapult > 10 || archer>0|| heavy > 0 || spy > 5 || spear > 0 |
     document.forms[0].ram.value =ram;
     document.forms[0].snob.value =snob;
     document.forms[0].knight.value =knight;
-
-    if(dmax==1){document.getElementById('selectAllUnits').click();};
-
-
     document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1 COLOR="RED">Dodge time='+dtime+'<br> Dodge! </FONT><br>';
-//var audio = new Audio('https://logboss.net/tw/111/dodge.wav');audio.loop = true;audio.play();setTimeout(function(){audio.pause()},650);
     fnFillRallyPoint();
 
     if (document.forms[0].x.value!=""){

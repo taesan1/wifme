@@ -130,7 +130,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         ii = i + 1;
 
                         //노블
-                        if (gonoble1&& !done&&!done1 ){
+                        if (gonoble1&& !done&&!done1&&!gosniped ){
                             var time = $(row).find("td").eq(5).html();
                             if (tim == "0") {
                                 tim = time.split("<")[0];
@@ -169,11 +169,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                                 };
                                 localStorage["dodge" + villa] = lt3;
                                 localStorage["dodget" + villa] = lt3;
-                                if (gosmall || gomedium || golarge) {
-                                    localStorage["dodger" + villa] = 1;
-                                } else {
-                                    localStorage["dodger" + villa] = 0;
-                                };
+                                localStorage["dodger" + villa] = 0;
                                 cw = document.URL.split('?')[0] + "?" + sitter + "&village=" + villa + "&screen=place";
                                 var ll = localStorage["ll"];
                                 if (ll != cw) {
