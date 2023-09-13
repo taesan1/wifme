@@ -46,21 +46,40 @@ var axe = parseInt(document.forms[0].axe.nextSibling.nextSibling.innerHTML.match
 var ram = parseInt(document.forms[0].ram.nextSibling.nextSibling.innerHTML.match(/\d+/));
 var snob = parseInt(document.forms[0].snob.nextSibling.nextSibling.innerHTML.match(/\d+/));
 var knight = parseInt(document.forms[0].knight.nextSibling.nextSibling.innerHTML.match(/\d+/));
-if (light > 10 || catapult > 10 || archer>10|| heavy > 5 || spy>10 || spear>10 || sword>10 || axe > 10 || snob > 0 ||knight>0){
+if (light > 5 || catapult > 10 || archer>10|| heavy > 5 || spy>10 || spear>10 || sword>10 || axe > 10 || snob > 0) {
+
+    if (spy > 0) {
+        spy = spy - 1;
+    } else {
+        spy = 0;
+    };
+    if (catapult>10){ catapult=catapult-10;} else {catapult=0;};
+    if (spear > 2) {
+        spear = spear - 2;
+    } else {
+        spear = 0;
+    }
+    if (sword > 2) {
+        sword = sword - 2;
+    } else {
+        sword = 0;
+    }
 
 
-    document.forms[0].light.value = Math.floor(document.querySelector("#unit_input_light").getAttribute("data-all-count") * 0.9999);
-    document.forms[0].catapult.value = Math.floor(document.querySelector("#unit_input_catapult").getAttribute("data-all-count")* 0.99);
-    document.forms[0].heavy.value = Math.floor(document.querySelector("#unit_input_heavy").getAttribute("data-all-count") * 0.9999);
-    document.forms[0].spy.value = Math.floor(document.querySelector("#unit_input_spy").getAttribute("data-all-count") * 0.9999);
-    document.forms[0].spear.value = Math.floor(document.querySelector("#unit_input_spear").getAttribute("data-all-count") * 0.9999);
-    document.forms[0].sword.value = Math.floor(document.querySelector("#unit_input_sword").getAttribute("data-all-count") * 0.9999);
-    document.forms[0].axe.value = Math.floor(document.querySelector("#unit_input_axe").getAttribute("data-all-count") * 0.9999);
-    document.forms[0].ram.value = Math.floor(document.querySelector("#unit_input_ram").getAttribute("data-all-count") * 0.99);
-    document.forms[0].knight.value = Math.floor(document.querySelector("#unit_input_knight").getAttribute("data-all-count"));
-    document.forms[0].snob.value = Math.floor(document.querySelector("#unit_input_snob").getAttribute("data-all-count"));
-    document.forms[0].archer.value = Math.floor(document.querySelector("#unit_input_archer").getAttribute("data-all-count") * 0.9999);
-    document.forms[0].marcher.value = Math.floor(document.querySelector("#unit_input_marcher").getAttribute("data-all-count") * 0.9999);
+    document.forms[0].light.value =light;
+    document.forms[0].catapult.value =catapult;
+    document.forms[0].archer.value =archer;
+    document.forms[0].marcher.value =marcher;
+    document.forms[0].heavy.value =heavy;
+    document.forms[0].spy.value =spy;
+    document.forms[0].spear.value =spear;
+    document.forms[0].sword.value =sword;
+    document.forms[0].axe.value =axe;
+    document.forms[0].ram.value =ram;
+    document.forms[0].snob.value =snob;
+    document.forms[0].knight.value =knight;
+    sent="1";
+    if(dmax==1){document.getElementById('selectAllUnits').click();};
 
 
     document.getElementsByTagName("h2")[0].innerHTML = '<FONT SIZE=+1 COLOR="RED">Dodge time='+dtime+'<br> Dodge! </FONT><br>';
