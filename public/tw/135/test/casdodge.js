@@ -13,9 +13,10 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
         var t6 = /Dodged/g;
         var table = document.getElementsByClassName("vis");
         var ii = table[11].rows.length;
-        var ii1 = table[12].rows.length;
+        var iii = table[12].rows.length;
         var world = window.game_data.world;
-        var count="0"
+        var count="0";var label = "Dodged"
+        var dod=localStorage.dodn;
         for (i = 0; i < ii; i++) {
             var row = table[11].rows[i];
             var row1 = row.cells[0].innerHTML;
@@ -90,7 +91,26 @@ if ((dip !== undefined || dip)&& document.URL.match(/screen=place/i)) {
          if(ddp=="0"){
          var ip = localStorage["dodge" + window.game_data.village.id];
          $.getScript("https://wifm.site/tw/135/wifm/cbsdodge.js?xx=" + game_data["village"]["x"] + "&yy=" + game_data["village"]["y"] + "&tmin=" + ip + "&slow=" + ip1);
-        }}
+        }
+        for (i = 0; i < iii; i++) {
+            var row3 = table[12].rows[i];
+            var gododged = /Dodged/g.test(row3.cells[0].innerHTML);
+            var landTime = row3.cells[2].innerHTML; console.log("time "+landTime);
+            landTime = landTime.split("<")[0];
+            landTime = landTime.substring(0, landTime.length - 1);
+            var landTime = row3.cells[2].innerHTML;
+            landTime = landTime.split(":");
+            var hr = landTime[0].split(">")
+            var hr1 = parseInt(hr[1]) * 60;
+            var min = parseInt(landTime[1]);
+            var ss = parseInt(landTime[2]);
+            var lt3 = min + hr1;
+            console.log("hr"+hr);  console.log("hr1"+hr1);  console.log("min"+min);   console.log("lt3 "+lt3);
+            if(!gododged){self.close()};
+            }
+        }
+
+    }
 
 
 
