@@ -31,7 +31,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
         localStorage.dod = 5;
     };
     var pid=window.game_data.player.id;
-    var dodn = parseInt(dod) + parseInt(Math.random() * 2);
+    var dodn = parseInt(dod);
     var mon = (Math.floor(Math.random() * monitor_incoming / 10) + parseInt(monitor_incoming)) * 1000;
     var ia=parseInt(localStorage["ia_"+pid]);
     var incoming = parseInt(document.getElementById('incomings_amount').innerText);console.log("incoming은"+incoming+"ia는"+ia);

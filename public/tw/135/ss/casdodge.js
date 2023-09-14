@@ -44,7 +44,7 @@ if (dip && document.URL.match(/screen=place/i)) {
                     console.log("cancel time dynamic");
                 }
                 localStorage["dodge" + window.game_data.village.id] = "close";
-                var closetime = ((dodn - 1) * 60000) + (Math.random() * 5999);
+                var closetime = ((dodn) * 60000) - (Math.random() * 3000);
                 var ct; // 전역 변수로 설정하여 clearInterval에 접근할 수 있도록 합니다.
 
                 function canceldodge() {
@@ -107,5 +107,5 @@ if (dip && document.URL.match(/screen=place/i)) {
             self.close();
         }, 4000);
     };
-   
+
 }
