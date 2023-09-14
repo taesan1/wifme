@@ -62,6 +62,8 @@ else{localStorage.setItem("stop","0"); UI.SuccessMessage('시작 ',1000);};
     var fg = localStorage.fg;
     g1 = prompt("동줍에 사용할 그룹의 id를 입력해주세요 URL에 group= 다음 숫자입니다", fg);
     localStorage.setItem("fg", g1);UI.SuccessMessage('동줍 그룹이 설정되었습니다 ',1000);;
+    g2 = prompt("동줍세팅을 초기화하시겠습니까? yes/no ", g2);
+    if(g2==="yes"){delete localStorage.jStorage;}else{console.log("대기");}
 }else if (mdd == 5) {
     var old = localStorage.old;
     old = prompt("어떤 리네임으로 하시겠습니까?", old);
