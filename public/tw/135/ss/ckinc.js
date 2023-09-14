@@ -230,6 +230,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
 
         if (localStorage.now !== "대기") {
             UI.InfoMessage('잠시 대기 현재는 ' + localStorage.now, 16000);
+
         } else {
             if (pt > Math.floor(Math.random() * 20) + 60) {UI.InfoMessage('페이지 새로고침.. ', 1000);
                 window.location.reload();
