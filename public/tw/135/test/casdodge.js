@@ -20,13 +20,14 @@ if (dip && document.URL.match(/screen=place/i)) {
         var t3 = /Dodged/g;
         var table = document.getElementsByClassName("vis");
         var iii = table[12].rows.length;
-        var ii = table[11].rows.length;
+        var ii = table[11].rows.length;var count= 0;
         var ccc1=setInterval(ccc,1000);
         if (lt2 === null && cancle === null) {
             // 최초 실행 시 lt2와 cancle을 계산
             for (i = 0; i < iii; i++) {
                 var row1 = table[12].rows[i];
-                if (t3.test(row1.cells[0].innerHTML)) {
+                if (t3.test(row1.cells[0].innerHTML)&&count < 1)) {
+                    count++;
                     var a = Math.floor(Date.now() / 1000);console.log(a);
                     var landTime = row1.cells[2].innerHTML.trim();
                     landTime = landTime.split("<")[0];

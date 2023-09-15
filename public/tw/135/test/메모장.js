@@ -121,7 +121,8 @@ if (lt2 === null && cancle === null) {
     // 최초 실행 시 lt2와 cancle을 계산
     for (i = 0; i < iii; i++) {
         var row1 = table[12].rows[i];
-        if (t3.test(row1.cells[0].innerHTML)) {
+        if (t3.test(row1.cells[0].innerHTML&count < 1)) {
+            count++;
             var a = Math.floor(Date.now() / 1000);console.log(a);
      var landTime = row1.cells[2].innerHTML.trim();
             landTime = landTime.split("<")[0];
@@ -133,7 +134,7 @@ if (lt2 === null && cancle === null) {
             var min = parseInt(landTime[1])*60;
             var ss = parseInt(landTime[2]);
             var lt1 = min + hr1 + ss;
-            lt2 = Math.floor(lt1 / 2) + 3;
+            lt2 = Math.floor(lt1 / 2) + 5;
             console.log("시간은 "+hr1+" 분은 "+min+" 초는 " + ss);
             console.log("닷지 설정시간"+lt1 + " 닷지 취소시간 " + lt2);
             cancle = lt2 + a;console.log("취소 설정시간"+cancle);
