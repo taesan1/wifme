@@ -26,7 +26,7 @@ if (dip && document.URL.match(/screen=place/i)) {
             // 최초 실행 시 lt2와 cancle을 계산
             for (i = 0; i < iii; i++) {
                 var row1 = table[12].rows[i];
-                if (t3.test(row1.cells[0].innerHTML)&&count < 1)) {
+                if (t3.test(row1.cells[0].innerHTML)&&count < 1) {
                     count++;
                     var a = Math.floor(Date.now() / 1000);console.log(a);
                     var landTime = row1.cells[2].innerHTML.trim();
