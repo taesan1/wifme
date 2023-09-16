@@ -7,15 +7,7 @@ function back(){
     );
     let totalIncomings = jQuery('#incomings_form tr .quickedit-label');
     let missingBackTimes = 0;
-
-    if (DEBUG) {
-        console.debug(
-            `${scriptInfo()} incomingsWithBacktime`,
-            incomingsWithBacktime
-        );
-        console.debug(`${scriptInfo()} totalIncomings`, totalIncomings);
-    }
-
+    
     if (incomingsWithBacktime.length === totalIncomings.length) {
         UI.SuccessMessage(tt('All incomings have backtime already added!'));
     } else {
