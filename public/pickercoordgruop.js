@@ -120,7 +120,7 @@ if (/t=/g.test(bbb)) {
 
 function checkOverviewVillages() {
     var aaa = window.location.href;
-    var targetUrl = "screen=overview_villages&type=static";
+    var targetUrl = "screen=overview_villages&mode=groups&type=static";
     var isTargetPage = aaa.includes(targetUrl);
 
     if (isTargetPage) {
@@ -128,7 +128,7 @@ function checkOverviewVillages() {
         popup1();
     } else {
         alert("Please move to the Manual Groups overview screen");
-        var bbb = document.URL.split('?')[0] + "?" + sitter + "&village=" + villageid + "&screen=overview_villages&type=static";
+        var bbb = document.URL.split('?')[0] + "?" + sitter + "&village=" + villageid + "&screen=overview_villages&mode=groups&type=static";
         window.location.href = bbb;
     }
 }
