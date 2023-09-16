@@ -47,26 +47,27 @@ var axe = parseInt(document.forms[0].axe.nextSibling.nextSibling.innerHTML.match
 var ram = parseInt(document.forms[0].ram.nextSibling.nextSibling.innerHTML.match(/\d+/));
 var snob = parseInt(document.forms[0].snob.nextSibling.nextSibling.innerHTML.match(/\d+/));
 var knight = parseInt(document.forms[0].knight.nextSibling.nextSibling.innerHTML.match(/\d+/));
-if (light > 6 || catapult > 10 || archer > 10 || heavy > 6 || spy > 10 || spear > 10 || sword > 10 || axe > 10 || snob > 0) {
-
+if (light > 6 || catapult > 10 || archer > 10 || heavy > 6 || spy > 10 || spear > 10 || sword > 10 || axe > 10 || snob > 0|| ram > 10) {
+    var random = Math.floor(Math.random() * 5) + 2;
     if (spy > 2) {
         spy = spy - 3;
     } else {
         spy = 0;
     };
-    if (catapult>5){ catapult=catapult-5;} else {catapult=0;};
+    if (ram>5){ ram=ram-random;} else {ram=0;};
+    if (catapult>5){ catapult=catapult-random;} else {catapult=0;};
     if (spear > 2) {
         spear = spear - 2;
     } else {
         spear = 0;
     }
-    if (sword > 2) {
-        sword = sword - 2;
+    if (sword > 5) {
+        sword = sword - random;;
     } else {
         sword = 0;
     }
-    if (archer > 2) {
-        archer = archer -2;
+    if (archer > 5) {
+        archer = archer -random;;
     }else{
         archer = 0;
     }
