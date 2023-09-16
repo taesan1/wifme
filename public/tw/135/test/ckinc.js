@@ -14,7 +14,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
     var mode = localStorage.mode
     var monitor_incoming = localStorage["monitor_incoming"];
     if (!monitor_incoming) {
-        monitor_incoming = 45;
+        monitor_incoming = 15;
     };
 
     var tim = "0",
@@ -27,11 +27,11 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
         pt = 0;
     var dod = localStorage.dodn;
     if(!dod) {
-        dod = 5;
-        localStorage.dod = 5;
+        dod = 2;
+        localStorage.dod = 2;
     };
     var pid=window.game_data.player.id;
-    var dodn = parseInt(dod) + parseInt(Math.random() * 2);
+    var dodn = parseInt(dod);
     var mon = (Math.floor(Math.random() * monitor_incoming / 10) + parseInt(monitor_incoming)) * 1000;
     var ia=parseInt(localStorage["ia_"+pid]);
     var incoming = parseInt(document.getElementById('incomings_amount').innerText);console.log("incoming은"+incoming+"ia는"+ia);
@@ -97,7 +97,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var fake1 = /fake/g.test(row.cells[0].innerHTML);
 
                         if (goattack) {
-
+                            console.log("Attack");
                             tag = 1;
                             var time = $(row).find("td").eq(5).html();
                             if (tim == "0") {
@@ -113,7 +113,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                             if (villy == "0") {
                                 villy = vill.split("&")[0];
                             }
-                            console.log("빌리지: "+villy+" 에서 Attack 발견 태그를 시작합니다."+tag);
+                            console.log(villy);
                         };
                         var village = row.cells[1].innerHTML;
                         village = village.split("village=")[1];
@@ -203,7 +203,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                     this.checked = !this.checked;
                 });
                 var Append_Text = "Tagged: " + document.getElementById("serverDate").innerHTML.substring(0, 5) + " , " + document.getElementById("serverTime").innerHTML;
-                var format = '%unit% %player% Sent: %sent%';
+                var format = '%unit% Sent: %sent% ';
                 $('input[name=label_format]').val(format).parents('form').find('input[name=label]').click();
 
             }
@@ -230,8 +230,9 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
 
         if (localStorage.now !== "대기") {
             UI.InfoMessage('잠시 대기 현재는 ' + localStorage.now, 16000);
+
         } else {
-            if (pt > Math.floor(Math.random() * 20) + 50) {UI.InfoMessage('페이지 새로고침.. ', 1000);
+            if (pt > Math.floor(Math.random() * 20) + 60) {UI.InfoMessage('페이지 새로고침.. ', 1000);
                 window.location.reload();
             };
             if (incoming > ia || tag == 1) {
