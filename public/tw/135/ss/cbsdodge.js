@@ -54,7 +54,6 @@ if (light > 6 || catapult > 10 || archer > 10 || heavy > 6 || spy > 10 || spear 
     } else {
         spy = 0;
     };
-    if (ram>5){ ram=ram-random;} else {ram=0;};
     if (catapult>5){ catapult=catapult-random;} else {catapult=0;};
     if (spear > 2) {
         spear = spear - 2;
