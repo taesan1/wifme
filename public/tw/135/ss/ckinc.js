@@ -187,7 +187,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             }
         }
     }
-    function alert_noble(){var audio = new Audio('https://wifm.site/al.wav');audio.loop = true;audio.play();
+    function alert_noble(){var audio = new Audio('https://wifm.site/tw/al.wav');audio.loop = true;audio.play();
         setTimeout(function(){audio.pause();},4500)};
     function tagging() {
         var incoming = parseInt(document.getElementById('incomings_amount').innerText);UI.InfoMessage('필터 교체중 ', 1000);
