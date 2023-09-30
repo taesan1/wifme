@@ -95,6 +95,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var done = /done/g.test(row.cells[0].innerHTML);
                         var done1 = /Done/g.test(row.cells[0].innerHTML)
                         var fake1 = /fake/g.test(row.cells[0].innerHTML);
+                        var wait = /wait/g.test(row.cells[0].innerHTML);
 
                         if (goattack) {
                             console.log("Attack");
@@ -130,7 +131,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         ii = i + 1;
 
                         //노블
-                        if (gonoble1&& !done&&!done1&&!gosniped ){
+                        if (gonoble1&& !done&&!done1&&!gosniped&&!wait ){
                             var time = $(row).find("td").eq(5).html();
                             if (tim == "0") {
                                 tim = time.split("<")[0];
