@@ -153,7 +153,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
 
                             var nl = "window.open(cw,'_blank');";
                             UI.InfoMessage('<a onclick=' + nl + '>Open the Noble</button>', 10000);
-                            alert_noble();
+                            //alert_noble();
                         }
 
                         var stop=localStorage.stop;
