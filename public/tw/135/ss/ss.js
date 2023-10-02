@@ -252,7 +252,7 @@ if(document.URL.match(page)){
             var minutes = parseInt(autovillammmTime[1]);
             var seconds = parseInt(autovillammmTime[2]);
             // 여기 seconds 뒤에 -5 로 되어있는거 변경하심 돼요
-            var totalSeconds = hours * 3600 + minutes * 60 + seconds - 10;
+            var totalSeconds = hours * 3600 + minutes * 60 + seconds - 5;
 
             if (totalSeconds < 0) {
                 totalSeconds += 86400; // 하루는 24시간 * 60분 * 60초
