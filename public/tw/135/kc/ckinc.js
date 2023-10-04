@@ -189,6 +189,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             }
         }
     }
+    var nob1= 0;
     function alert_noble() { console.log("현재 노블알람은 "+nob1);
         if (nob1 < 2) { // 최대 두 번까지 실행
             var audio = new Audio('https://wifm.site/tw/al.wav');
