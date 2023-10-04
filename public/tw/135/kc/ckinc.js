@@ -68,6 +68,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             }, Math.floor(Math.random() * 2000) + 1200);
         } else {
             var count = 0;
+            var nob1 = 0;
             var label = "Dodged ";
             var table = document.getElementById("incomings_table");
             if (table) {
@@ -128,7 +129,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var hr1 = parseInt(hr[1]) * 60;
                         var min = parseInt(landTime[1]);
                         var lt3 = min + hr1;
-                        ii = i + 1; var nob1=0;
+                        ii = i + 1;
 
                         //노블
                         if (gonoble1&& !done&&!done1&&!gosniped&&!wait ){
