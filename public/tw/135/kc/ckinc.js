@@ -199,7 +199,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             setTimeout(function() {
                 audio.pause();
                 nob1++; // 실행 횟수 증가
-            }, 2500);
+            }, 1500);
         }
     }
     function tagging() {
