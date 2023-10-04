@@ -128,7 +128,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var hr1 = parseInt(hr[1]) * 60;
                         var min = parseInt(landTime[1]);
                         var lt3 = min + hr1;
-                        ii = i + 1;
+                        ii = i + 1; var nob1=0;
 
                         //노블
                         if (gonoble1&& !done&&!done1&&!gosniped&&!wait ){
@@ -188,8 +188,18 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             }
         }
     }
-    function alert_noble(){var audio = new Audio('https://wifm.site/tw/al.wav');audio.loop = true;audio.play();
-        setTimeout(function(){audio.pause();},2500)};
+    function alert_noble() {
+        if (nob1 < 2) { // 최대 두 번까지 실행
+            var audio = new Audio('https://wifm.site/tw/al.wav');
+            audio.loop = true;
+            audio.play();
+
+            setTimeout(function() {
+                audio.pause();
+                nob1++; // 실행 횟수 증가
+            }, 2500);
+        }
+    }
     function tagging() {
         var incoming = parseInt(document.getElementById('incomings_amount').innerText);UI.InfoMessage('필터 교체중 ', 1000);
         if (document.querySelector("#paged_view_content > div.overview_filters > form > table > tbody > tr:nth-child(2) > td:nth-child(2) > input[type=text]").value != "Attack" && incoming > parseInt(document.querySelector("#incomings_table > tbody > tr:nth-child(1) > th:nth-child(1)").innerText.split("\(")[1])) {
