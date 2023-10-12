@@ -243,7 +243,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
         man = document.getElementsByClassName("overview_filters_manage");
         man[0].innerText = "Manage filters         닷지 " + dodn + " 분 / 모니터링 " + ia + " Incoming //새로고침=" + pt + " // 매 " + parseInt(mon / 1000) + " 초 //현재 모드는 "+mode+"  현재 상태는 "+ now;
 
-        if (localStorage.now !== "대기") {
+        if (localStorage.now !== "대기"||localStorage.now !== "닷지"){
             UI.InfoMessage('잠시 대기 현재는 ' + localStorage.now, 16000);
 
         } else {
