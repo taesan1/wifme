@@ -173,11 +173,11 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                                 localStorage["dodget" + villa] = lt3;
                                 localStorage["dodger" + villa] = 0;
                                 cw = document.URL.split('?')[0] + "?" + sitter + "&village=" + villa + "&screen=place";
+                                localStorage["now"] = "닷지";
                                 var ll = localStorage["ll"];
                                 if (ll != cw) {
                                     localStorage["ll"] = cw;
                                     localStorage["mode"] = "방어";
-                                    localStorage["now"] = "닷지";
                                     window.open(cw, "Dodge", "height=600,width=600");
                                     //open(cw);focus();
                                 } else {
