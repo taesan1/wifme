@@ -32,6 +32,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
     };
     var pid=window.game_data.player.id;
     var dodn = parseInt(dod);
+    var dodn1 = parseInt(dod)+1;
     var mon = (Math.floor(Math.random() * monitor_incoming / 10) + parseInt(monitor_incoming)) * 1000;
     var ia=parseInt(localStorage["ia_"+pid]);
     var incoming = parseInt(document.getElementById('incomings_amount').innerText);console.log("incoming은"+incoming+"ia는"+ia);
@@ -183,8 +184,8 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                                 } else {
                                     delete localStorage["ll"];
                                 }
-                            }
-                        }else{localStorage["now"] = "대기";}
+                            }else if(count < 1 && lt3 > dodn1){localStorage["now"] = "대기";}
+                        }
                     }
                 }
             }
