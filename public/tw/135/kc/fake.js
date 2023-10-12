@@ -65,7 +65,7 @@ if (!document.hidden) {
     setTimeout(function () {
         NextVillage();
     }, del + 35000);
-} else {
+} /*else {
     UI.InfoMessage('현재 대기 상태가 아닙니다', 2000, 'error');
     setInterval(function () {
         if (!document.hidden && localStorage.now == "대기") {
@@ -73,7 +73,7 @@ if (!document.hidden) {
         }
     }, 10000);
 }
-
+*/
 var sent = 0;
 var del2 = Math.floor((Math.random() * 10));
 
@@ -90,10 +90,7 @@ if (localStorage["fake" + window.game_data.village.id] == 1) {
     if (del2 == 1 && spy > 100) {
         document.forms[0].spy.value = 1;
         sent = 1;
-    }/* else{ if (spy > 30) {
-        document.forms[0].spy.value = 1;
-        sent = 1;
-    }}*/
+    }
     else {
         if (spy > 30) {
             document.forms[0].spy.value = 1;
@@ -103,7 +100,7 @@ if (localStorage["fake" + window.game_data.village.id] == 1) {
             document.forms[0].catapult.value = 1;
             sent = 1;
         } else {
-            if (rams !== 0) {
+            if (rams > 100) {
                 document.forms[0].ram.value = 1;
                 sent = 1;
             } else {
