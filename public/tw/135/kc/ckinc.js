@@ -98,7 +98,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var fake1 = /fake/g.test(row.cells[0].innerHTML);
                         var wait = /wait/g.test(row.cells[0].innerHTML);
 
-                        if (goattack) {
+                        if (goattack&&now=="대기") {
                             console.log("Attack");
                             tag = 1;
                             var time = $(row).find("td").eq(5).html();
@@ -177,13 +177,14 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                                 if (ll != cw) {
                                     localStorage["ll"] = cw;
                                     localStorage["mode"] = "방어";
+                                    localStorage["now"] = "닷지";
                                     window.open(cw, "Dodge", "height=600,width=600");
                                     //open(cw);focus();
                                 } else {
                                     delete localStorage["ll"];
                                 }
                             }
-                        }
+                        }else{localStorage["now"] = "대기";}
                     }
                 }
             }
@@ -248,7 +249,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             if (pt > Math.floor(Math.random() * 20) + 60) {UI.InfoMessage('페이지 새로고침.. ', 1000);
                 window.location.reload();
             };
-            if (incoming > ia || tag == 1) {
+            if ((incoming > ia || tag == 1&&now=="대기")) {
                 UI.InfoMessage('공격 발견 ', 2000);
                 localStorage.setItem("now", "태그");
                 clearInterval(gooo);
