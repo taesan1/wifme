@@ -32,7 +32,6 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
     };
     var pid=window.game_data.player.id;
     var dodn = parseInt(dod);
-    var dodn1 = parseInt(dod)+1;
     var mon = (Math.floor(Math.random() * monitor_incoming / 10) + parseInt(monitor_incoming)) * 1000;
     var ia=parseInt(localStorage["ia_"+pid]);
     var incoming = parseInt(document.getElementById('incomings_amount').innerText);console.log("incoming은"+incoming+"ia는"+ia);
@@ -69,7 +68,6 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             }, Math.floor(Math.random() * 2000) + 1200);
         } else {
             var count = 0;
-            var nob1 = 0;
             var label = "Dodged ";
             var table = document.getElementById("incomings_table");
             if (table) {
@@ -99,7 +97,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var fake1 = /fake/g.test(row.cells[0].innerHTML);
                         var wait = /wait/g.test(row.cells[0].innerHTML);
 
-                        if (goattack&&now=="대기") {
+                        if (goattack) {
                             console.log("Attack");
                             tag = 1;
                             var time = $(row).find("td").eq(5).html();
@@ -133,7 +131,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         ii = i + 1;
 
                         //노블
-                        if (gonoble1&& !done&&!done1&&!gosniped&&!wait ){
+                        if (gonoble1&& !done&&!done1&&!gosniped&&!wait&&!gostack1 &&!gostack){
                             var time = $(row).find("td").eq(5).html();
                             if (tim == "0") {
                                 tim = time.split("<")[0];
@@ -174,7 +172,6 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                                 localStorage["dodget" + villa] = lt3;
                                 localStorage["dodger" + villa] = 0;
                                 cw = document.URL.split('?')[0] + "?" + sitter + "&village=" + villa + "&screen=place";
-                                localStorage["now"] = "닷지";
                                 var ll = localStorage["ll"];
                                 if (ll != cw) {
                                     localStorage["ll"] = cw;
@@ -184,7 +181,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                                 } else {
                                     delete localStorage["ll"];
                                 }
-                            }else if(count < 1 && lt3 > dodn1){localStorage["now"] = "대기";}
+                            }
                         }
                     }
                 }
@@ -201,7 +198,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             setTimeout(function() {
                 audio.pause();
                 nob1++; // 실행 횟수 증가
-            }, 1500);
+            }, 1000);
         }
     }
     function tagging() {
@@ -243,14 +240,14 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
         man = document.getElementsByClassName("overview_filters_manage");
         man[0].innerText = "Manage filters         닷지 " + dodn + " 분 / 모니터링 " + ia + " Incoming //새로고침=" + pt + " // 매 " + parseInt(mon / 1000) + " 초 //현재 모드는 "+mode+"  현재 상태는 "+ now;
 
-        if (localStorage.now !== "대기"||localStorage.now !== "닷지"){
+        if (localStorage.now !== "대기") {
             UI.InfoMessage('잠시 대기 현재는 ' + localStorage.now, 16000);
 
         } else {
             if (pt > Math.floor(Math.random() * 20) + 60) {UI.InfoMessage('페이지 새로고침.. ', 1000);
                 window.location.reload();
             };
-            if ((incoming > ia || tag == 1&&now=="대기")) {
+            if (incoming > ia || tag == 1) {
                 UI.InfoMessage('공격 발견 ', 2000);
                 localStorage.setItem("now", "태그");
                 clearInterval(gooo);

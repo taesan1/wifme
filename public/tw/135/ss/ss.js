@@ -73,7 +73,7 @@ function bot() {
 };
 //봇 stop
 if(now=="bot"){setInterval(function(){
-    if(document.getElementById('bot_check') == null&&!document.getElementById('label')){localStorage.now="대기";}},2000);
+    if(document.getElementById('bot_check') == null&&!document.getElementById('label')){localStorage.now="대기";}},10000);
 };
 
 function alert(){
