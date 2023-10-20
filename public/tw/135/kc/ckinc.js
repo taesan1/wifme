@@ -157,7 +157,8 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         }
 
                         //
-                        if (gonoble1){   var sitter = ""; // Define your sitter variable
+                        if (gonoble1){ console.log("버튼생성");
+                            var sitter = ""; // Define your sitter variable
                             var villa = "";  // Define your villa variable
 
                             console.log(sitter);
@@ -176,7 +177,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
 
                             // Add the button to the page
                             var man = document.getElementsByClassName("overview_filters_manage");
-                            man .appendChild(openButton);
+                            man.appendChild(openButton);
                         }
                         //
 
