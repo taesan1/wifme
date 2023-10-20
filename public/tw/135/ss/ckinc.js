@@ -129,24 +129,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var min = parseInt(landTime[1]);
                         var lt3 = min + hr1;
                         ii = i + 1;
-                        if (gonoble1||gonoble){
-                            var time = $(row).find("td").eq(5).html();
-                            if (tim == "0") {
-                                tim = time.split("<")[0];
-                            };
-                            ap = $(row).find("td").eq(3).html();
-                            ap = ap.split(">")[1];
-                            ap = ap.split("<")[0];
-                            var vill = $(row).find("td").eq(1).html();
-                            vill = vill.split("village=")[1];
-                            var villn = vill.split(">")[1];
-                            villn = villn.split("<")[0];
-                            if (villy == "0") {
-                                villy = vill.split("&")[0];
-                            };
-                            console.log(sitter);
 
-                        }
                         //노블
                         if (gonoble1&& !done&&!done1&&!gosniped&&!wait&&!gostack1 &&!gostack){
                             var time = $(row).find("td").eq(5).html();
@@ -171,6 +154,25 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                             var nl = "window.open(cw,'_blank');";
                             UI.InfoMessage('<a onclick=' + nl + '>Open the Noble</button>', 10000);
                             alert_noble();
+                        }
+
+                        if (gonoble1||gonoble){
+                            var time = $(row).find("td").eq(5).html();
+                            if (tim == "0") {
+                                tim = time.split("<")[0];
+                            };
+                            ap = $(row).find("td").eq(3).html();
+                            ap = ap.split(">")[1];
+                            ap = ap.split("<")[0];
+                            var vill = $(row).find("td").eq(1).html();
+                            vill = vill.split("village=")[1];
+                            var villn = vill.split(">")[1];
+                            villn = villn.split("<")[0];
+                            if (villy == "0") {
+                                villy = vill.split("&")[0];
+                            };
+                            console.log(sitter);
+
                         }
 
                         var stop=localStorage.stop;
