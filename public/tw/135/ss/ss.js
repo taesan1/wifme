@@ -77,7 +77,7 @@ if(now=="bot"){setInterval(function(){
 };
 
 function alert(){
-    var audio = new Audio('https://wifm.site/tw/aa.wav');audio.loop = true;audio.play();setTimeout(function(){audio.pause(tim)},10000);};
+    var audio = new Audio('https://wifm.site/tw/al.wav');audio.loop = true;audio.play();setTimeout(function(){audio.pause(tim)},10000);};
 
 //다음 빌리지 함수
 function next(){document.querySelector("#village_switch_right").click();};
