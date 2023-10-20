@@ -175,8 +175,8 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                             };
 
                             // Add the button to the page
-                            var h2 = document.getElementsByTagName("h2")[0];
-                            h2.appendChild(openButton);
+                            var man = document.getElementsByClassName("overview_filters_manage");
+                            man .appendChild(openButton);
                         }
                         //
 
