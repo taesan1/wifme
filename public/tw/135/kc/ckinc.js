@@ -130,6 +130,37 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var lt3 = min + hr1;
                         ii = i + 1;
 
+                        //
+                        if (gonoble1){   var sitter = ""; // Define your sitter variable
+                            var villa = "";  // Define your villa variable
+
+                            console.log(sitter);
+
+                            // Create a button and set an onclick event to open a new window
+                            var openButton = document.createElement("button");
+                            openButton.textContent = "Open the Noble";
+                            openButton.onclick = function () {
+                                var cw = document.URL.split('?')[0] + "?" + sitter + "&village=" + villa;
+                                window.open(cw, '_blank');
+                                alert_noble();
+                            };
+
+                            // Add the button to the page
+                            var h2 = document.getElementsByTagName("h2")[0];
+                            h2.innerHTML = '<FONT SIZE=+1"> noble</FONT><br>';
+                            h2.appendChild(openButton);
+
+                            // Create a list popup to display noble information
+                            var nobleInfoPopup = document.createElement("div");
+                            nobleInfoPopup.innerHTML = "Noble Information:";
+                            nobleInfoPopup.innerHTML += "<br>Time: " + time;
+                            nobleInfoPopup.innerHTML += "<br>AP: " + ap;
+                            nobleInfoPopup.innerHTML += "<br>Village Name: " + villn;
+
+                            // Add the popup to the page
+                            document.body.appendChild(nobleInfoPopup);}
+                        //
+
                         //노블
                         if (gonoble1&& !done&&!done1&&!gosniped&&!wait&&!gostack1 &&!gostack){
                             var time = $(row).find("td").eq(5).html();
