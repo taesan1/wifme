@@ -155,7 +155,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                             UI.InfoMessage('<a onclick=' + nl + '>Open the Noble</button>', 10000);
                             alert_noble();
                         }
-
+/*
                         if (gonoble1||gonoble){
                             var time = $(row).find("td").eq(5).html();
                             if (tim == "0") {
@@ -174,6 +174,8 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                             console.log(sitter);
 
                         }
+
+ */
 
                         var stop=localStorage.stop;
                         //닷지
