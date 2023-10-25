@@ -197,10 +197,10 @@ if(document.URL.match(page)){
             if (serverTime >= input) {
                 setTimeout(function() {
                     document.getElementById("troop_confirm_submit").click();
-                },  autodelay);
+                },  delay);
                 clearInterval(attInterval);
             }
-        }, 5);
+        }, 1);
     }
     function ab() {
         var autovillammm = localStorage["autommm" + window.game_data.village.id];

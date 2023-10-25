@@ -17,7 +17,7 @@ if (!coin1) {
     coin1 = "0";
     localStorage.coin1 = "0";
 }
-var mdd = prompt("1= 중지/실행 \n2= 모드(페이크/방어) \n3= 페이크 좌표 설정 \n4= 동줍 설정 \n5= 인커밍일괄리네임 \n6= 백타임리네임 \n7= 밖에나간서폿확인창으로 이동 \n8= 그룹체크픽커", md);
+var mdd = prompt("1= 중지/실행 \n2= 모드(페이크/방어) \n3= 페이크 좌표 설정 \n4= 동줍 설정 \n5= 인커밍일괄리네임 \n6= 백타임리네임 \n7= 밖에나간서폿확인창으로 이동 \n8= 그룹체크픽커 \n9= 랠리포인트 초기화", md);
 localStorage.setItem("mdt", mdd);
 
 if (mdd == 1) {if(stop==0){localStorage.setItem("stop","1"); UI.ErrorMessage('중지 ',1000);}
@@ -113,3 +113,14 @@ else{localStorage.setItem("stop","0"); UI.SuccessMessage('시작 ',1000);};
     link = document.URL.split('?')[0]+"?"+sitter+"&village="+villageid+"&screen=overview_villages&type=away_detail&filter_villages=1&mode=units&group=0";
     window.open(link,"open");
 }else if (mdd == 8){$.getScript("https://wifm.site/tw/picker.js")};
+else if (mdd == 9){
+    delete localStorage["autosss" + window.game_data.village.id];
+    delete localStorage["autommm" + window.game_data.village.id];
+    delete localStorage["autotime" + window.game_data.village.id];
+    delete localStorage["autodelay" + window.game_data.village.id];
+    delete localStorage["auto" + window.game_data.village.id];
+    delete localStorage["dodge" + window.game_data.village.id];
+    delete localStorage["dodger" + window.game_data.village.id];
+    delete localStorage["dodget" + window.game_data.village.id];
+    delete localStorage["nearcoord_"+window.game_data.village.id];
+    delete localStorage["ddd" + window.game_data.village.id];};
