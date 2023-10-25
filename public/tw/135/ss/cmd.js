@@ -112,7 +112,7 @@ else{localStorage.setItem("stop","0"); UI.SuccessMessage('시작 ',1000);};
     if(/t=/g.test(link)){sitter="t="+(link.split("t=")[1]).split("&")[0]};
     link = document.URL.split('?')[0]+"?"+sitter+"&village="+villageid+"&screen=overview_villages&type=away_detail&filter_villages=1&mode=units&group=0";
     window.open(link,"open");
-}else if (mdd == 8){$.getScript("https://wifm.site/tw/picker.js")};
+}else if (mdd == 8){$.getScript("https://wifm.site/tw/picker.js")}
 else if (mdd == 9){
     delete localStorage["autosss" + window.game_data.village.id];
     delete localStorage["autommm" + window.game_data.village.id];
