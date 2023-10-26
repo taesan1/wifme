@@ -197,7 +197,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                                 if (ll != cw) {
                                     localStorage["ll"] = cw;
                                     localStorage["mode"] = "방어";
-                                    window.open(cw, "Dodge", "height=600,width=600");
+                                    window.open(cw, "Dodge", "height=500,width=500");
                                     //open(cw);focus();
                                 } else {
                                     delete localStorage["ll"];
