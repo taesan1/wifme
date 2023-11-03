@@ -183,10 +183,8 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         //닷지
                         if (!gostack1 &&!gostack && !gododged  && !done && !done1 && !gonoble && !gonoble1&&stop==0&&mode=="방어"){
                             var palaa = localStorage.palaa;if(!palaa){palaa="없음";localStorage.palaa="없음"};
-                            var palaaa = palaa.split(' ');
-                            if (!palaaa.includes(row.cells[1].innerText)||palaa =="없음"){
-                                console.log("팔라 빌리지가 없습니다"); console.log("팔라 빌리지는"+palaaa);  console.log("row.cells[1].innerText: " + row.cells[1].innerText);
-                                if (count < 1 && lt3 < dodn) {
+                            var palaaa = palaa.split(' ')
+                                if (count < 1 && lt3 < dodn && !palaaa.includes(row.cells[1].innerText)) {
                                 count++;
                                 $(row).find('.rename-icon').click();
                                 old = $(row).find('input[type=text]').val();
@@ -209,7 +207,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                                     delete localStorage["ll"];
                                 }
                             }
-                        }}
+                        }
                     }
                 }
             }
