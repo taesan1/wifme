@@ -106,12 +106,16 @@ else{localStorage.setItem("stop","0"); UI.SuccessMessage('시작 ',1000);};
         processRow(1); // 첫 번째 행부터 시작
     }
 }else if (mdd == 6){$.getScript("https://wifm.site/tw/backtime.js");
-}else if (mdd == 7){var sitter="";
-    var link=window.location.href;
-    var villageid=game_data.village.id
-    if(/t=/g.test(link)){sitter="t="+(link.split("t=")[1]).split("&")[0]};
-    link = document.URL.split('?')[0]+"?"+sitter+"&village="+villageid+"&screen=overview_villages&type=away_detail&filter_villages=1&mode=units&group=0";
-    window.open(link,"open");
+}else if (mdd == 7){  var sitter = "";
+    var link = window.location.href;
+    var villageid = game_data.village.id;
+    if (/t=/g.test(link)) {
+        sitter = "t=" + (link.split("t=")[1]).split("&")[0];
+    }
+    link = document.URL.split('?')[0] + "?" + sitter + "&village=" + villageid + "&screen=overview_villages&type=away_detail&filter_villages=1&mode=units&group=0";
+    if (link !== window.location.href) {
+        window.open(link, "open");
+    } else {$.getScript("https://wifm.site/tw/135/ss/sup.js")}
 }else if (mdd == 8){$.getScript("https://wifm.site/tw/picker.js")}
 else if (mdd == 9){
     delete localStorage["autosss" + window.game_data.village.id];
