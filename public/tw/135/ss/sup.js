@@ -1,6 +1,6 @@
 
 function sup(){
-    UI.InfoMessage('회군 체크중 ',1000);
+    UI.InfoMessage('회군 체크중 ',2000);
 // 팝업 생성
 var popup = document.createElement("div");
 popup.id = "popup";
@@ -30,11 +30,11 @@ for (c = 2; c < 9999; c++) {
     if (d) {
         var cellText = d.textContent;
         if (/^[12345]$/.test(cellText)) {
-            UI.InfoMessage('회군 목록을 나열합니다. ',1000);
+            UI.InfoMessage('회군 목록을 나열합니다. ',3000);
             console.log("찾았다: " + cellText);
             var aa = document.querySelector("#units_table tbody tr:nth-child(" + c + ")");
             showPopup(aa);
-        } else {UI.InfoMessage('5필드 내에 회군할 병력이 없습니다 ',1000);
+        } else {UI.InfoMessage('5필드 내에 회군할 병력이 없습니다 ',3000);
             console.log("없다 ");
         }
     }
