@@ -184,7 +184,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         if (!gostack1 &&!gostack && !gododged  && !done && !done1 && !gonoble && !gonoble1&&stop==0&&mode=="방어"){
                             var palaa = localStorage.palaa;if(!palaa){palaa="없음";localStorage.palaa="없음"};
                             var palaaa = palaa.split(' ');
-                            if (!palaaa.includes(row.cells[1].innerHTML)||palaa =="없음"){
+                            if (!palaaa.includes(row.cells[1].innerText)||palaa =="없음"){
                                 console.log("팔라 빌리지가 없습니다"); console.log("팔라 빌리지는"+palaaa);  console.log("row.cells[1].innerHTML: " + row.cells[1].innerHTML);
                                 if (count < 1 && lt3 < dodn) {
                                 count++;
