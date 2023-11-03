@@ -185,7 +185,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                             var palaa = localStorage.palaa;if(!palaa){palaa="없음";localStorage.palaa="없음"};
                             var palaaa = palaa.split(' ');
                             if (!palaaa.includes(row.cells[1].innerText)||palaa =="없음"){
-                                console.log("팔라 빌리지가 없습니다"); console.log("팔라 빌리지는"+palaaa);  console.log("row.cells[1].innerHTML: " + row.cells[1].innerHTML);
+                                console.log("팔라 빌리지가 없습니다"); console.log("팔라 빌리지는"+palaaa);  console.log("row.cells[1].innerText: " + row.cells[1].innerText);
                                 if (count < 1 && lt3 < dodn) {
                                 count++;
                                 $(row).find('.rename-icon').click();
