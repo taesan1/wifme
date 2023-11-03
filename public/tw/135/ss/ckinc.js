@@ -11,12 +11,13 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
     localStorage.incoming_date = dd;
     var tag = "";
     var del = Math.floor((Math.random() * 1000));
-    var mode = localStorage.mode
+    var mode = localStorage.mode;
     var monitor_incoming = localStorage["monitor_incoming"];
     if (!monitor_incoming) {
         monitor_incoming = 15;
     };
-
+    var palaa = localStorage.palaa;if(!palaa){palaa="없음";localStorage.palaa="없음"};
+    var palaaa = palaa.split(' ');
     var tim = "0",
         villy = "0",
         ap = "0",
@@ -70,6 +71,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             var count = 0;
             var label = "Dodged ";
             var table = document.getElementById("incomings_table");
+
             if (table) {
                 var row = [];
                 var ii = 1;
@@ -180,6 +182,10 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var stop=localStorage.stop;
                         //닷지
                         if (!gostack1 &&!gostack && !gododged  && !done && !done1 && !gonoble && !gonoble1&&stop==0&&mode=="방어"){
+                            var palaa = localStorage.palaa;
+                            var palaaa = palaa.split(' '); // 공백으로 분리된 좌표 배열
+
+                            if (!palaaa.includes(row.cells[1].innerHTML)||palaa =="없음"){
                             if (count < 1 && lt3 < dodn) {
                                 count++;
                                 $(row).find('.rename-icon').click();
@@ -203,7 +209,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                                     delete localStorage["ll"];
                                 }
                             }
-                        }
+                        }}
                     }
                 }
             }
