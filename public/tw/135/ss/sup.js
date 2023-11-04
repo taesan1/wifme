@@ -53,10 +53,10 @@ function sup() {
                 <h2>1~5필드내에 지원나간 방병</h2>
                 <hr>
             </div>
-            <div class="popup-content" style="max-height: 80%; overflow: auto;">
+            <div class="popup-content" style="overflow: auto; height: 70%;">
                 <div class="draggable-area">
                     <div class="draggable-content">
-                        <table class="popup-table">
+                        <table class="popup-table" style="margin: 0; padding: 0; width: 100%;">
                             <tr>
                                 <th>Village </th>
                             <th>distance</th>
