@@ -22,23 +22,27 @@ jQuery(popup).draggable();
 // 팝업 추가
 document.body.appendChild(popup);
 
-var c;
-for (c = 2; c < 9999; c++) {
-    var selector = "#units_table tbody tr:nth-child(" + c + ") td:nth-child(2)";
-    var d = document.querySelector(selector);
+    var cellTextArray = []; // cellText 값을 저장할 배열
 
-    if (d) {
-        var cellText = d.textContent;
-        if (/^[12345]$/.test(cellText)) {
-            UI.InfoMessage('회군 목록을 나열합니다. ',3000);
-            console.log("찾았다: " + cellText);
-            var aa = document.querySelector("#units_table tbody tr:nth-child(" + c + ")");
-            showPopup(aa);
-        } else {UI.InfoMessage('5필드 내에 회군할 병력이 없습니다 ',3000);
-            console.log("없다 ");
+    for (c = 2; c < 9999; c++) {
+        var selector = "#units_table tbody tr:nth-child(" + c + ") td:nth-child(2)";
+        var d = document.querySelector(selector);
+
+        if (d) {
+            var cellText = d.textContent;
+            if (/^[12345]$/.test(cellText)) {
+                UI.InfoMessage('회군 목록을 나열합니다. ', 3000);
+                console.log("찾았다: " + cellText);
+                var aa = document.querySelector("#units_table tbody tr:nth-child(" + c + ")");
+                showPopup(aa);
+                cellTextArray.push(cellText); // cellText 값을 배열에 추가
+            } else {
+                UI.InfoMessage('5필드 내에 회군할 병력이 없습니다 ', 3000);
+                console.log("없다 ");
+            }
         }
     }
-}
+
 
 function showPopup(aa) {
     // 팝업 내용 업데이트
