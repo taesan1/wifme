@@ -17,7 +17,7 @@ if (!coin1) {
     coin1 = "0";
     localStorage.coin1 = "0";
 }
-var mdd = prompt("1= 중지/실행 \n2= 모드(페이크/방어) \n3= 페이크 좌표 설정 \n4= 동줍 설정 \n5= 인커밍일괄리네임 \n6= 백타임리네임 \n7= 밖에나간서폿확인창으로 이동 \n8= 그룹체크픽커 \n9= 랠리포인트 초기화 \n10= 닷지 팔라제외", md);
+var mdd = prompt("1= 중지/실행 \n2= 모드(페이크/방어) \n3= 페이크 좌표 설정 \n4= 동줍 설정 \n5= 인커밍일괄리네임 \n7= 유닛 회군 \n9= 랠리포인트 초기화 ", md);
 localStorage.setItem("mdt", mdd);
 
 if (mdd == 1) {if(stop==0){localStorage.setItem("stop","1"); UI.ErrorMessage('중지 ',1000);}
@@ -105,7 +105,6 @@ else{localStorage.setItem("stop","0"); UI.SuccessMessage('시작 ',1000);};
     if (table) {
         processRow(1); // 첫 번째 행부터 시작
     }
-}else if (mdd == 6){$.getScript("https://wifm.site/tw/backtime.js");
 }else if (mdd == 7){  var sitter = "";
     var link = window.location.href;
     var villageid = game_data.village.id;
@@ -116,8 +115,7 @@ else{localStorage.setItem("stop","0"); UI.SuccessMessage('시작 ',1000);};
     if (link !== window.location.href) {
         window.open(link, "open");
     } else {$.getScript("https://wifm.site/tw/135/ss/sup.js")}
-}else if (mdd == 8){$.getScript("https://wifm.site/tw/picker.js")}
-else if (mdd == 9){
+}else if (mdd == 9){
     delete localStorage["autosss" + window.game_data.village.id];
     delete localStorage["autommm" + window.game_data.village.id];
     delete localStorage["autotime" + window.game_data.village.id];
@@ -128,9 +126,12 @@ else if (mdd == 9){
     delete localStorage["dodget" + window.game_data.village.id];
     delete localStorage["nearcoord_"+window.game_data.village.id];
     delete localStorage["ddd" + window.game_data.village.id];}
-else if (mdd == 10){
+;
+/*else if (mdd == 10){
     var palaa = localStorage["palaa"];
     palaa = prompt("닷지하지않을 팔라빌리지 좌표를 입력해주세요. 여러개의 좌표는 공백으로 구분 재설정시 한글 /없음/ 을 입력하세요", palaa);
     localStorage["palaa"] = palaa;
     if(!palaa){localStorage.palaa="없음"};
-   };
+   }
+
+ */
