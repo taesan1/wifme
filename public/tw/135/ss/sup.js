@@ -1,38 +1,25 @@
-async function sup() {
+function sup() {
     UI.InfoMessage('회군 체크중 ', 2000);
 
     var aaContents = []; // aa 요소의 HTML을 저장할 배열
 
-    // 비동기 루프 함수 정의
-    async function processCells() {
-        let count = 0; // 찾은 항목의 카운트를 유지하는 변수
+    for (c = 2; c < 9999; c++) {
+        var selector = "#units_table tbody tr:nth-child(" + c + ") td:nth-child(2)";
+        var d = document.querySelector(selector);
 
-        for (let c = 2; c < 9999; c++) {
-            await new Promise(resolve => setTimeout(resolve, 0)); // 비동기적으로 루프를 돌리기 위한 대기
-            var selector = "#units_table tbody tr:nth-child(" + c + ") td:nth-child(2)";
-            var d = document.querySelector(selector);
-
-            if (d) {
-                var cellText = d.textContent;
-                if (/^[12345]$/.test(cellText)) {
-                    count++; // 찾은 경우 카운트 증가
-                    UI.InfoMessage('찾았다 ! (' + count + '개)', 3000);
-                    console.log("찾았다: " + cellText);
-                    var aa = document.querySelector("#units_table tbody tr:nth-child(" + c + ")");
-                    aaContents.push(aa.innerHTML);
-                } else {
-                    UI.InfoMessage('찾는 중 (' + count + '개)', 3000);
-                    console.log("없다 ");
-                }
+        if (d) {
+            var cellText = d.textContent;
+            if (/^[12345]$/.test(cellText)) {
+                UI.InfoMessage('회군 목록을 나열합니다. ', 3000);
+                console.log("찾았다: " + cellText);
+                var aa = document.querySelector("#units_table tbody tr:nth-child(" + c + ")");
+                aaContents.push(aa.innerHTML);
+            } else {
+                UI.InfoMessage('5필드 내에 회군할 병력이 없습니다 ', 3000);
+                console.log("없다 ");
             }
         }
-
-        console.log("총 " + count + "개의 항목을 찾았습니다.");
     }
-
-
-    // 비동기 루프 실행
-    await processCells();
 
     // 팝업 생성
     var popup = document.createElement("div");
