@@ -27,8 +27,8 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
         pt = 0;
     var dod = localStorage.dodn;
     if(!dod) {
-        dod = 2;
-        localStorage.dod = 2;
+        dod = 5;
+        localStorage.dod = 5;
     };
     var pid=window.game_data.player.id;
     var dodn = parseInt(dod);

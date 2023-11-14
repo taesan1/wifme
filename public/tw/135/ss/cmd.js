@@ -44,11 +44,12 @@ else{localStorage.setItem("stop","0"); UI.SuccessMessage('시작 ',1000);};
         // 방어 로직
         localStorage.setItem("mode", "방어");
         var dodn = localStorage["dod"];
+        if(!dodn){dodn =5;}
         dodn = prompt("닷지 시간을 입력해 주세요(2~8분 추천)", dodn);
         localStorage["dodn"] = dodn;
         var monitor_incoming = localStorage["monitor_incoming"];
         if (!monitor_incoming) {
-            monitor_incoming = 45;
+            monitor_incoming = 25;
         }
         monitor_incoming = prompt("모니터링 새로고침 (5~55초 추천)", monitor_incoming);
         localStorage["monitor_incoming"] = monitor_incoming;
