@@ -199,7 +199,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                                 if (ll != cw) {
                                     localStorage["ll"] = cw;
                                     localStorage["mode"] = "방어";
-                                    window.open(cw, "Dodge", "height=600,width=550");
+                                    window.open(cw, "Dodge", "height=700,width=600");
                                     //open(cw);focus();
                                 } else {
                                     delete localStorage["ll"];
