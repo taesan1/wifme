@@ -1,8 +1,5 @@
-
-
-
-
-if(!document.getElementById("checkbox_wood").checked){document.querySelector("#checkbox_wood").click();}
+javascript:
+    if(!document.getElementById("checkbox_wood").checked){document.querySelector("#checkbox_wood").click();}
 if(!document.getElementById("checkbox_stone").checked){document.querySelector("#checkbox_stone").click();}
 if(!document.getElementById("checkbox_iron").checked){document.querySelector("#checkbox_iron").click();}
 var  ti=ti*3600,m,wr,cr,ir,row,mer;
