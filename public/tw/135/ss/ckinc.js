@@ -245,7 +245,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
 
             }
         }
-    } tagging();
+    }
 
     function bot() {
         if ((document.getElementById('bot_check') != null || document.getElementById('label')) && localStorage.now != "bot") {
