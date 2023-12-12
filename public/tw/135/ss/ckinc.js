@@ -95,7 +95,8 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var need1 = /Need/g.test(row.cells[0].innerHTML);
                         var gg = /gg/g.test(row.cells[0].innerHTML);
                         var done = /done/g.test(row.cells[0].innerHTML);
-                        var done1 = /Done/g.test(row.cells[0].innerHTML)
+                        var done1 = /Done/g.test(row.cells[0].innerHTML);
+                        var done2 = /완/g.test(row.cells[0].innerHTML)
                         var fake1 = /fake/g.test(row.cells[0].innerHTML);
                         var wait = /wait/g.test(row.cells[0].innerHTML);
 
@@ -133,7 +134,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         ii = i + 1;
 
                         //노블
-                        if (gonoble1&& !done&&!done1&&!gosniped&&!wait&&!gostack1 &&!gostack){
+                        if (gonoble1&&!done2&& !done&&!done1&&!gosniped&&!wait&&!gostack1 &&!gostack){
                             var time = $(row).find("td").eq(5).html();
                             if (tim == "0") {
                                 tim = time.split("<")[0];
@@ -182,7 +183,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var stop=localStorage.stop;
 
                         //닷지
-                        if (!gostack1 &&!gostack && !gododged && !gododged1 && !done && !done1 && !gonoble && !gonoble1&&stop==0&&mode=="방어"){
+                        if (!gostack1 &&!gostack && !gododged && !gododged1 && !done && !done1&& !done2 && !gonoble && !gonoble1&&stop==0&&mode=="방어"){
                                 if (count < 1 && lt3 < dodn) {
                                 count++;
                                 $(row).find('.rename-icon').click();
