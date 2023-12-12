@@ -241,7 +241,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                 var format = '%unit% %coords% %player% Sent: %sent% ';
 
                */
-               $('input[name=Label]').click();
+               $('input[name=label]').click();
 
             }
         }
