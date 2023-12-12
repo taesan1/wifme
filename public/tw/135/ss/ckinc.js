@@ -237,13 +237,15 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                 $('input:checkbox').each(function() {
                     this.checked = !this.checked;
                 });
-                var Append_Text = "Tagged: " + document.getElementById("serverDate").innerHTML.substring(0, 5) + " , " + document.getElementById("serverTime").innerHTML;
+              /*  var Append_Text = "Tagged: " + document.getElementById("serverDate").innerHTML.substring(0, 5) + " , " + document.getElementById("serverTime").innerHTML;
                 var format = '%unit% %coords% %player% Sent: %sent% ';
-                $('input[name=label_format]').val(format).parents('form').find('input[name=label]').click();
+
+               */
+               $('input[name=Label]').click();
 
             }
         }
-    }
+    } tagging();
 
     function bot() {
         if ((document.getElementById('bot_check') != null || document.getElementById('label')) && localStorage.now != "bot") {
