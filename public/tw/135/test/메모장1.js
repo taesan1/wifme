@@ -1,130 +1,368 @@
-function sup() {
-    UI.InfoMessage('회군 체크중 ', 2000);
 
-    var aaContents = []; // aa 요소의 HTML을 저장할 배열
+async function processReport() {
+    var table = document.getElementById("report_list");
+    var cc = 999;
 
-    for (c = 2; c < 2000; c++) {
-        var selector = "#units_table tbody tr:nth-child(" + c + ") td:nth-child(2)";
-        var d = document.querySelector(selector);
+    if (table) {
+        try {
+            var row = [];
+            var ii = 1;
 
-        if (d) {
-            var cellText = d.textContent;
-            if (/^[12345]$/.test(cellText)) {
-                UI.InfoMessage('회군 목록을 나열합니다. ', 3000);
-                console.log("찾았다: " + cellText);
-                var aa = document.querySelector("#units_table tbody tr:nth-child(" + c + ")");
-                aaContents.push(aa.innerHTML);
-            } else {
-                UI.InfoMessage('5필드 내에 회군할 병력이 없습니다 ', 3000);
-                console.log("없다 ");
-            }
-        }
-    }
+            for (var i = 1; i < cc; i++) {
+                row = table.rows[i];
+                console.log("row" + row);
+                var end = /selectAll/g.test(row.cells[0].innerHTML);
 
-    // 팝업 생성
-    var popup = document.createElement("div");
-    popup.id = "popup";
-    popup.style.position = "fixed";
-    popup.style.top = "10vw";
-    popup.style.right = "10vw";
-    popup.style.zIndex = "150";
-    popup.style.width = "50%"; // 너비를 화면 너비의 90%로 설정
-    popup.style.height = "50%"; // 높이를 화면 높이의 90%로 설정
-    popup.style.padding = "10px";
-    popup.style.background = "#ffffff scroll right top repeat";
-    popup.style.borderWidth = "7px";
-    popup.style.border = "1px solid #000000";
+                if (end) {
+                    i = cc;
+                } else {
+                    var aa = row.cells[1].innerHTML;
+                    var match = aa.match(/href="([^"]+)"/);
 
-    // 팝업 드래그 가능하게 설정
-    jQuery(popup).draggable();
-
-    // 팝업 추가
-    document.body.appendChild(popup);
-
-    function showPopup() {
-        // 팝업 내용 업데이트
-        var popupContent = document.getElementById("popup");
-        var aaContentsHTML = aaContents.map(function(aaContent) {
-            return `<tr class="popup-div">${aaContent}</tr>`;
-        }).join(''); // 각 aaContent를 <tr>로 묶어서 합칩니다
-
-        popupContent.innerHTML = `
-            <div class="popup-title">
-                <h2>1~5필드내에 지원나간 방병</h2>
-                <hr>
-            </div>
-            <div class="popup-content" style="overflow: auto; height: 70%;">
-                <div class="draggable-area">
-                    <div class="draggable-content">
-                        <table class="popup-table" style="margin: 0; padding: 0; width: 100%;">
-                            <tr>
-                                <th>Village </th>
-                            <th>distance</th>
-                            <th style="text-align:center" width=""><img src="https://dsen.innogamescdn.com/asset/c38e8d7e/graphic/unit/unit_spear.png" class="" data-title="Spear fighter"></th>
-                            <th style="text-align:center" width=""><img src="https://dsen.innogamescdn.com/asset/c38e8d7e/graphic/unit/unit_sword.png" class="" data-title="Swordsman"></th>
-                            <th style="text-align:center" width=""><img src="https://dsen.innogamescdn.com/asset/c38e8d7e/graphic/unit/unit_axe.png" class="" data-title="Axeman"></th>
-                            <th style="text-align:center" width=""><img src="https://dsen.innogamescdn.com/asset/c38e8d7e/graphic/unit/unit_archer.png" class="" data-title="Archer"></th>
-                            <th style="text-align:center" width=""><img src="https://dsen.innogamescdn.com/asset/c38e8d7e/graphic/unit/unit_spy.png" class="" data-title="Scout"></th>
-                            <th style="text-align:center" width=""><img src="https://dsen.innogamescdn.com/asset/c38e8d7e/graphic/unit/unit_light.png" class="" data-title="Light cavalry"></th>
-                            <th style="text-align:center" width=""><img src="https://dsen.innogamescdn.com/asset/c38e8d7e/graphic/unit/unit_marcher.png" class="" data-title="Mounted archer"></th>
-                            <th style="text-align:center" width=""><img src="https://dsen.innogamescdn.com/asset/c38e8d7e/graphic/unit/unit_heavy.png" class="" data-title="Heavy cavalry"></th>
-                            <th style="text-align:center" width=""><img src="https://dsen.innogamescdn.com/asset/c38e8d7e/graphic/unit/unit_ram.png" class="" data-title="Ram"></th>
-                            <th style="text-align:center" width=""><img src="https://dsen.innogamescdn.com/asset/c38e8d7e/graphic/unit/unit_catapult.png" class="" data-title="Catapult"></th>
-                            <th style="text-align:center" width=""><img src="https://dsen.innogamescdn.com/asset/c38e8d7e/graphic/unit/unit_knight.png" class="" data-title="Paladin"></th>
-                            <th style="text-align:center" width=""><img src="https://dsen.innogamescdn.com/asset/c38e8d7e/graphic/unit/unit_snob.png" class="" data-title="Nobleman"></th>
-                            <th>Action</th>
-                            </tr>
-                            ${aaContentsHTML}
-                        </table>
-                    </div>
-                </div>
-            </div>
-        <div class="popup-button">
-            <input name="all" class="btn" type="submit" style="margin-right: 10px;" value="ALL 체크">
-            <input name="submit_units_back" class="btn" type="submit" value="회군">
-        </div>
-        `;
-        var popupCheckboxes = popupContent.querySelectorAll(".village_checkbox");
-        popupCheckboxes.forEach(function(popupCheckbox) {
-            popupCheckbox.addEventListener("click", function() {
-                var value = popupCheckbox.getAttribute("value");
-                var realCheckboxes = document.querySelectorAll('input[type="checkbox"][value="' + value + '"]');
-                realCheckboxes.forEach(function(realCheckbox) {
-                    realCheckbox.checked = popupCheckbox.checked;
-                });
-            });
-        });
-        // "Withdraw" 버튼 클릭 시 이벤트 처리
-        var popupWithdrawButton = popupContent.querySelector('input[name="submit_units_back"]');
-        if (popupWithdrawButton) {
-            popupWithdrawButton.addEventListener("click", function() {
-                var realWithdrawButton = document.querySelector('input[name="submit_units_back"]');
-                if (realWithdrawButton) {
-                    realWithdrawButton.click();
+                    if (match) {
+                        var hrefValue = match[1];
+                        aaa = hrefValue;
+                        aaa = aaa.split("?")[1];
+                        console.log("aaa ", aaa);
+                        // 비동기적으로 데이터를 가져오기 위해 async/await 사용
+                        var bbb = await $.get(document.URL.split('?')[0] + aaa);
+                        console.log("bbb", bbb);
+                        var CriarRelatorioNotas = {
+                            dados: {
+                                player: {
+                                    nomePlayer: game_data.player.name,
+                                    playerEstaAtacar: !1,
+                                    playerEstaDefender: !1,
+                                    playerQuerInfoAtacante: !1,
+                                    playerQuerInfoDefensor: !1
+                                },
+                                aldeia: {
+                                    ofensiva: {
+                                        idAldeia: "-1",
+                                        tipoAldeia: _t("unknown"),
+                                        tropas: {
+                                            totais: [],
+                                            ofensivas: 0,
+                                            defensivas: 0
+                                        }
+                                    },
+                                    defensiva: {
+                                        idAldeia: "-1",
+                                        tipoAldeia: _t("unknown"),
+                                        tropas: {
+                                            visiveis: !1,
+                                            totais: [],
+                                            fora: {
+                                                visiveis: !1,
+                                                ofensivas: 0,
+                                                defensivas: 0,
+                                                totais: []
+                                            },
+                                            dentro: {
+                                                ofensivas: 0,
+                                                defensivas: 0,
+                                                totais: []
+                                            },
+                                            apoios: 0
+                                        },
+                                        edificios: {
+                                            edificiosVisiveis: !1,
+                                            torre: [!1, 0],
+                                            igrejaPrincipal: [!1, 0],
+                                            igreja: [!1, 0],
+                                            muralha: [!1, 0]
+                                        }
+                                    }
+                                },
+                                mundo: {
+                                    fazendaPorTropa: [],
+                                    arqueirosAtivos: !1
+                                }
+                            },
+                            configs: {
+                                esconderTropas: !1
+                            },
+                            verificarPagina: function() {
+                                var a = bbb.match(/(screen\=report){1}|(view\=){1}\w+/g);
+                                return !(!a || 2 != a.length) || (UI.ErrorMessage(_t("verifyReportPage"), 5e3), !1)
+                            },
+                            initConfigs: function() {
+                                this.configs.esconderTropas = this.loadLSConfig("esconderTropas", !1)
+                            },
+                            loadLSConfig: (a, e) => localStorage.getItem(`${LS_prefix}_${a}`) ?? e,
+                            initDadosScript: function() {
+                                var a = this;
+                                this.dados.mundo.arqueirosAtivos = game_data.units.includes("archer"), this.dados.mundo.arqueirosAtivos ? (this.dados.aldeia.ofensiva.tropas.totais = new Array(10).fill(0), this.dados.aldeia.defensiva.tropas.totais = new Array(10).fill(0), this.dados.aldeia.defensiva.tropas.fora.totais = new Array(10).fill(0), this.dados.aldeia.defensiva.tropas.dentro.totais = new Array(10).fill(0), this.dados.mundo.fazendaPorTropa = [1, 1, 1, 1, 2, 4, 5, 6, 5, 8]) : (this.dados.aldeia.ofensiva.tropas.totais = new Array(8).fill(0), this.dados.aldeia.defensiva.tropas.totais = new Array(8).fill(0), this.dados.aldeia.defensiva.tropas.fora.totais = new Array(8).fill(0), this.dados.aldeia.defensiva.tropas.dentro.totais = new Array(8).fill(0), this.dados.mundo.fazendaPorTropa = [1, 1, 1, 2, 4, 6, 5, 8]);
+                                var e = $("#attack_info_att > tbody > tr:nth-child(1) > th:nth-child(2) > a").text(),
+                                    i = $("#attack_info_def > tbody > tr:nth-child(1) > th:nth-child(2) > a").text(),
+                                    s = 3;
+                                "0" != game_data.player.sitter && (s = 4), a.dados.aldeia.ofensiva.idAldeia = $("#attack_info_att > tbody > tr:nth-child(2) > td:nth-child(2) > span > a:nth-child(1)").url().split("=")[s], a.dados.aldeia.defensiva.idAldeia = $("#attack_info_def > tbody > tr:nth-child(2) > td:nth-child(2) > span > a:nth-child(1)").url().split("=")[s], i == this.dados.player.nomePlayer ? this.dados.player.playerEstaDefender = !0 : e == this.dados.player.nomePlayer && (this.dados.player.playerEstaAtacar = !0), $("#attack_spy_away > tbody > tr:nth-child(1) > th").length && (this.dados.aldeia.defensiva.tropas.fora.visiveis = !0, this.dados.mundo.arqueirosAtivos ? $("#attack_spy_away > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td").each((function(e, i) {
+                                    var s = parseInt(i.textContent);
+                                    e < a.dados.aldeia.defensiva.tropas.totais.length && (a.dados.aldeia.defensiva.tropas.fora.totais[e] = s), 2 == e || 5 == e || 6 == e || 8 == e ? a.dados.aldeia.defensiva.tropas.fora.ofensivas += s * a.dados.mundo.fazendaPorTropa[e] : 0 != e && 1 != e && 3 != e && 7 != e && 9 != e || (a.dados.aldeia.defensiva.tropas.fora.defensivas += s * a.dados.mundo.fazendaPorTropa[e])
+                                })) : $("#attack_spy_away > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td").each((function(e, i) {
+                                    var s = parseInt(i.textContent);
+                                    e < a.dados.aldeia.defensiva.tropas.totais.length && (a.dados.aldeia.defensiva.tropas.fora.totais[e] = s), 2 == e || 4 == e || 6 == e ? a.dados.aldeia.defensiva.tropas.fora.ofensivas += s * a.dados.mundo.fazendaPorTropa[e] : 0 != e && 1 != e && 5 != e && 7 != e || (a.dados.aldeia.defensiva.tropas.fora.defensivas += s * a.dados.mundo.fazendaPorTropa[e])
+                                }))), $("#attack_info_def_units > tbody > tr:nth-child(2) > td").length && (this.dados.aldeia.defensiva.tropas.visiveis = !0), this.dados.mundo.arqueirosAtivos ? (this.dados.aldeia.defensiva.tropas.visiveis && $("#attack_info_def_units > tbody > tr:nth-child(2) > td.unit-item").each((function(e, i) {
+                                    var s = parseInt(i.textContent);
+                                    e < a.dados.aldeia.defensiva.tropas.totais.length && (a.dados.aldeia.defensiva.tropas.dentro.totais[e] = s), 2 == e || 5 == e || 6 == e || 8 == e ? a.dados.aldeia.defensiva.tropas.dentro.ofensivas += s * a.dados.mundo.fazendaPorTropa[e] : 0 != e && 1 != e && 3 != e && 7 != e && 9 != e || (a.dados.aldeia.defensiva.tropas.dentro.defensivas += s * a.dados.mundo.fazendaPorTropa[e])
+                                })), $("#attack_info_att_units > tbody > tr:nth-child(2) > td.unit-item").each((function(e, i) {
+                                    var s = parseInt(i.textContent);
+                                    e < a.dados.aldeia.ofensiva.tropas.totais.length && (a.dados.aldeia.ofensiva.tropas.totais[e] = s), 2 == e || 5 == e || 6 == e ? a.dados.aldeia.ofensiva.tropas.ofensivas += s * a.dados.mundo.fazendaPorTropa[e] : 0 != e && 1 != e && 3 != e && 7 != e && 9 != e || (a.dados.aldeia.ofensiva.tropas.defensivas += s * a.dados.mundo.fazendaPorTropa[e])
+                                }))) : (this.dados.aldeia.defensiva.tropas.visiveis && $("#attack_info_def_units > tbody > tr:nth-child(2) > td.unit-item").each((function(e, i) {
+                                    var s = parseInt(i.textContent);
+                                    e < a.dados.aldeia.defensiva.tropas.totais.length && (a.dados.aldeia.defensiva.tropas.dentro.totais[e] = s), 2 == e || 4 == e || 6 == e ? a.dados.aldeia.defensiva.tropas.dentro.ofensivas += s * a.dados.mundo.fazendaPorTropa[e] : 0 != e && 1 != e && 5 != e && 7 != e || (a.dados.aldeia.defensiva.tropas.dentro.defensivas += s * a.dados.mundo.fazendaPorTropa[e])
+                                })), $("#attack_info_att_units > tbody > tr:nth-child(2) > td.unit-item").each((function(e, i) {
+                                    var s = parseInt(i.textContent);
+                                    e < a.dados.aldeia.ofensiva.tropas.totais.length && (a.dados.aldeia.ofensiva.tropas.totais[e] = s), 2 == e || 4 == e || 6 == e ? a.dados.aldeia.ofensiva.tropas.ofensivas += s * a.dados.mundo.fazendaPorTropa[e] : 0 != e && 1 != e && 5 != e && 7 != e || (a.dados.aldeia.ofensiva.tropas.defensivas += s * a.dados.mundo.fazendaPorTropa[e])
+                                }))), $("#attack_spy_buildings_left > tbody > tr:nth-child(1) > th:nth-child(1)").length && (this.dados.aldeia.defensiva.edificios.edificiosVisiveis = !0, $("table[id^='attack_spy_buildings_'] > tbody > tr:gt(0) > td > img").each((function(e, i) {
+                                    var s = i.src.split("/")[7].replace(".png", ""),
+                                        t = parseInt(i.parentNode.parentNode.childNodes[3].textContent);
+                                    "watchtower" == s ? a.dados.aldeia.defensiva.edificios.torre = [!0, t] : "church_f" == s ? a.dados.aldeia.defensiva.edificios.igrejaPrincipal = [!0, t] : "church" == s ? a.dados.aldeia.defensiva.edificios.igreja = [!0, t] : "wall" == s && (a.dados.aldeia.defensiva.edificios.muralha = [!0, t])
+                                })))
+                            },
+                            getTipoAldeia: function() {
+                                this.dados.aldeia.defensiva.tropas.visiveis ? (this.dados.aldeia.defensiva.tropas.dentro.ofensivas > 3e3 ? this.dados.aldeia.defensiva.tipoAldeia = _t("offensive") : this.dados.aldeia.defensiva.tropas.dentro.ofensivas > 500 ? this.dados.aldeia.defensiva.tipoAldeia = _t("probOffensive") : this.dados.aldeia.defensiva.tropas.dentro.defensivas > 1e3 ? this.dados.aldeia.defensiva.tipoAldeia = _t("defensive") : this.dados.aldeia.defensiva.tropas.dentro.defensivas > 500 && (this.dados.aldeia.defensiva.tipoAldeia = _t("probDefensive")), this.dados.aldeia.defensiva.tropas.apoios = Math.round(this.dados.aldeia.defensiva.tropas.dentro.defensivas / 2e4 * 10) / 10) : this.dados.aldeia.defensiva.tropas.visiveis || (this.dados.aldeia.defensiva.tipoAldeia = _t("noSurvivors")), this.dados.aldeia.defensiva.tropas.fora.visiveis && (this.dados.aldeia.defensiva.tropas.fora.ofensivas > 3e3 ? this.dados.aldeia.defensiva.tipoAldeia = _t("offensive") : this.dados.aldeia.defensiva.tropas.fora.ofensivas > 1e3 ? this.dados.aldeia.defensiva.tipoAldeia = _t("probOffensive") : this.dados.aldeia.defensiva.tropas.fora.defensivas > 1e3 ? this.dados.aldeia.defensiva.tipoAldeia = _t("defensive") : this.dados.aldeia.defensiva.tropas.fora.defensivas > 500 ? this.dados.aldeia.defensiva.tipoAldeia = _t("probDefensive") : this.dados.aldeia.defensiva.tropas.fora.defensivas + this.dados.aldeia.defensiva.tropas.fora.ofensivas > 1e3 && (this.dados.aldeia.defensiva.tropas.fora.ofensivas > this.dados.aldeia.defensiva.tropas.fora.defensivas ? this.dados.aldeia.defensiva.tipoAldeia = _t("probOffensive") : this.dados.aldeia.defensiva.tropas.fora.defensivas >= this.dados.aldeia.defensiva.tropas.fora.ofensivas && (this.dados.aldeia.defensiva.tipoAldeia = _t("probDefensive"))), this.dados.aldeia.defensiva.tropas.apoios += Math.round(this.dados.aldeia.defensiva.tropas.fora.defensivas / 2e4 * 10) / 10), this.dados.aldeia.ofensiva.tropas.ofensivas > this.dados.aldeia.ofensiva.tropas.defensivas ? this.dados.aldeia.ofensiva.tipoAldeia = _t("offensive") : this.dados.aldeia.ofensiva.tropas.ofensivas < this.dados.aldeia.ofensiva.tropas.defensivas && (this.dados.aldeia.ofensiva.tipoAldeia = _t("defensive"))
+                            },
+                            geraTextoNota: function() {
+                                var a, e = $("#report_export_code").text(),
+                                    i = $("#content_value > table > tbody > tr > td:nth-child(2) > table > tbody > tr > td > table:nth-child(2) > tbody > tr:nth-child(2)").text().replace(/\s+/g, " ").replace(/.{5}$/g, ""),
+                                    s = "";
+                                return (this.dados.player.playerEstaAtacar || this.dados.player.playerQuerInfoDefensor) && (a = this.dados.aldeia.defensiva.tipoAldeia), this.dados.player.playerEstaAtacar && !this.dados.player.playerQuerInfoAtacante || (a = this.dados.aldeia.ofensiva.tipoAldeia), !this.dados.player.playerEstaAtacar && this.dados.player.playerQuerInfoDefensor && (a = this.dados.aldeia.defensiva.tipoAldeia), s += " | [color=#" + (a == _t("offensive") || a == _t("probOffensive") ? "ff0000" : "0eae0e") + "][b]" + a + "[/b][/color] | ", (this.dados.player.playerEstaAtacar || this.dados.player.playerQuerInfoDefensor) && (this.dados.aldeia.defensiva.edificios.torre[0] && (s += "[building]watchtower[/building] " + _t("watchtower") + this.dados.aldeia.defensiva.edificios.torre[1] + " | "), this.dados.aldeia.defensiva.edificios.muralha[0] && (s += "[building]wall[/building][color=#5c3600][b] " + _t("wall") + this.dados.aldeia.defensiva.edificios.muralha[1] + "[/b][/color] | "), this.dados.aldeia.defensiva.edificios.igrejaPrincipal[0] && (s += "[building]church_f[/building] " + _t("firstChurch") + " | "), this.dados.aldeia.defensiva.edificios.igreja[0] && (s += "[building]church_f[/building] " + _t("church") + " " + this.dados.aldeia.defensiva.edificios.igreja[1] + " | "), this.dados.aldeia.defensiva.tropas.visiveis && a != _t("offensive") && a != _t("probOffensive") && (s += this.dados.aldeia.defensiva.tropas.apoios + _t("defensiveNukes") + " | ")), s += "[b][size=6]xD[/size][/b]", s += "\n\n[b]" + i + "[/b]", s += "" + e
+                            },
+                            escreveNota: function() {
+                                var a, e, i = this,
+                                    s = "";
+                                if (s = this.dados.player.playerEstaAtacar || this.dados.player.playerQuerInfoDefensor ? parseInt(this.dados.aldeia.defensiva.idAldeia) : parseInt(this.dados.aldeia.ofensiva.idAldeia), e = "0" == game_data.player.sitter ? "https://" + location.hostname + "/game.php?village=" + game_data.village.id + "&screen=api&ajaxaction=village_note_edit&h=" + game_data.csrf + "&client_time=" + Math.round(Timing.getCurrentServerTime() / 1e3) : "https://" + location.hostname + "/game.php?village=" + game_data.village.id + "&screen=api&ajaxaction=village_note_edit&t=" + game_data.player.id, this.dados.player.playerEstaAtacar || this.dados.player.playerEstaDefender) a = i.geraTextoNota(), $.post(e, {
+                                    note: a,
+                                    village_id: s,
+                                    h: game_data.csrf
+                                }, (function(a) {
+                                    UI.SuccessMessage(_t("noteCreated"), 2e3)
+                                }));
+                                else {
+                                    var t = $('<div class="center"> ' + _t("addReportTo") + " </div>"),
+                                        d = $('<div class="center"><button class="btn btn-confirm-yes atk">' + _("Atacante") + '</button><button class="btn btn-confirm-yes def">' + _("Defensor") + "</button></div>"),
+                                        o = t.add(d);
+                                    Dialog.show("relatorio_notas", o), d.find("button.atk").click((function() {
+                                        i.dados.player.playerQuerInfoAtacante = !0, a = i.geraTextoNota(), $.post(e, {
+                                            note: a,
+                                            village_id: i.dados.aldeia.ofensiva.idAldeia,
+                                            h: game_data.csrf
+                                        }, (function(a) {
+                                            UI.SuccessMessage(_t("noteCreated"), 2e3)
+                                        })), Dialog.close()
+                                    })), d.find("button.def").click((function() {
+                                        i.dados.player.playerQuerInfoDefensor = !0, a = i.geraTextoNota(), $.post(e, {
+                                            note: a,
+                                            village_id: i.dados.aldeia.defensiva.idAldeia,
+                                            h: game_data.csrf
+                                        }, (function(a) {
+                                            UI.SuccessMessage(_t("noteCreated"), 2e3)
+                                        })), Dialog.close()
+                                    }))
+                                }
+                            },
+                            start: function() {
+                                this.verificarPagina() && (this.initDadosScript(), this.getTipoAldeia(), this.escreveNota())
+                            }}
+                    }
                 }
-            });
+            }
+        } catch (error) {
+            console.error("Error occurred:", error);
         }
-        // "all" 버튼 클릭 시 이벤트 처리
-        var popupAllButton = popupContent.querySelector('input[name="all"]');
-        if (popupAllButton) {
-            popupAllButton.addEventListener("click", function() {
-                popupCheckboxes.forEach(function(popupCheckbox) {
-                    popupCheckbox.checked = true; // 모든 체크박스를 체크
-                    var value = popupCheckbox.getAttribute("value");
-                    var realCheckboxes = document.querySelectorAll('input[type="checkbox"][value="' + value + '"]');
-                    realCheckboxes.forEach(function(realCheckbox) {
-                        realCheckbox.checked = true; // 실제 체크박스도 체크
-                    });
-                });
-            });
-        }
-
-
-        // 팝업 표시
-        popup.style.display = "block";
     }
-
-    showPopup();
 }
 
-sup();
+// 함수 실행
+processReport();
+
+
+
+// 비동기 함수로 감싸기
+async function processReport() {
+    var table = document.getElementById("report_list");
+    var cc = 999;
+
+    if (table) {
+        try {
+            var row = [];
+            var ii = 1;
+
+            for (var i = 1; i < cc; i++) {
+                row = table.rows[i];
+                console.log("row" + row);
+                var end = /selectAll/g.test(row.cells[0].innerHTML);
+
+                if (end) {
+                    i = cc;
+                } else {
+                    var aa = row.cells[1].innerHTML;
+                    var match = aa.match(/href="([^"]+)"/);
+
+                    if (match) {
+                        var hrefValue = match[1];
+                        aaa = hrefValue;
+                        aaa = aaa.split("?")[1];
+                        console.log("aaa ", aaa);
+
+                        // 비동기적으로 데이터를 가져오기 위해 async/await 사용
+                        var bbb = await $.get(document.URL.split('?')[0] + aaa);
+                        console.log("bbb", bbb);
+
+                        // bbb를 받은 후에 함수 실행하는 부분 추가
+                        processBBB(bbb);
+                    }
+                }
+            }
+        } catch (error) {
+            console.error("Error occurred:", error);
+        }
+    }
+}
+
+// bbb를 받은 후 실행할 함수 정의
+function processBBB(bbbData) {
+    var CriarRelatorioNotas = {
+        dados: {
+            player: {
+                nomePlayer: game_data.player.name,
+                playerEstaAtacar: !1,
+                playerEstaDefender: !1,
+                playerQuerInfoAtacante: !1,
+                playerQuerInfoDefensor: !1
+            },
+            aldeia: {
+                ofensiva: {
+                    idAldeia: "-1",
+                    tipoAldeia: _t("unknown"),
+                    tropas: {
+                        totais: [],
+                        ofensivas: 0,
+                        defensivas: 0
+                    }
+                },
+                defensiva: {
+                    idAldeia: "-1",
+                    tipoAldeia: _t("unknown"),
+                    tropas: {
+                        visiveis: !1,
+                        totais: [],
+                        fora: {
+                            visiveis: !1,
+                            ofensivas: 0,
+                            defensivas: 0,
+                            totais: []
+                        },
+                        dentro: {
+                            ofensivas: 0,
+                            defensivas: 0,
+                            totais: []
+                        },
+                        apoios: 0
+                    },
+                    edificios: {
+                        edificiosVisiveis: !1,
+                        torre: [!1, 0],
+                        igrejaPrincipal: [!1, 0],
+                        igreja: [!1, 0],
+                        muralha: [!1, 0]
+                    }
+                }
+            },
+            mundo: {
+                fazendaPorTropa: [],
+                arqueirosAtivos: !1
+            }
+        },
+        configs: {
+            esconderTropas: !1
+        },
+        verificarPagina: function() {
+            var a = bbb.match(/(screen\=report){1}|(view\=){1}\w+/g);
+            return !(!a || 2 != a.length) || (UI.ErrorMessage(_t("verifyReportPage"), 5e3), !1)
+        },
+        initConfigs: function() {
+            this.configs.esconderTropas = this.loadLSConfig("esconderTropas", !1)
+        },
+        loadLSConfig: (a, e) => localStorage.getItem(`${LS_prefix}_${a}`) ?? e,
+        initDadosScript: function() {
+            var a = this;
+            this.dados.mundo.arqueirosAtivos = game_data.units.includes("archer"), this.dados.mundo.arqueirosAtivos ? (this.dados.aldeia.ofensiva.tropas.totais = new Array(10).fill(0), this.dados.aldeia.defensiva.tropas.totais = new Array(10).fill(0), this.dados.aldeia.defensiva.tropas.fora.totais = new Array(10).fill(0), this.dados.aldeia.defensiva.tropas.dentro.totais = new Array(10).fill(0), this.dados.mundo.fazendaPorTropa = [1, 1, 1, 1, 2, 4, 5, 6, 5, 8]) : (this.dados.aldeia.ofensiva.tropas.totais = new Array(8).fill(0), this.dados.aldeia.defensiva.tropas.totais = new Array(8).fill(0), this.dados.aldeia.defensiva.tropas.fora.totais = new Array(8).fill(0), this.dados.aldeia.defensiva.tropas.dentro.totais = new Array(8).fill(0), this.dados.mundo.fazendaPorTropa = [1, 1, 1, 2, 4, 6, 5, 8]);
+            var e = $("#attack_info_att > tbody > tr:nth-child(1) > th:nth-child(2) > a").text(),
+                i = $("#attack_info_def > tbody > tr:nth-child(1) > th:nth-child(2) > a").text(),
+                s = 3;
+            "0" != game_data.player.sitter && (s = 4), a.dados.aldeia.ofensiva.idAldeia = $("#attack_info_att > tbody > tr:nth-child(2) > td:nth-child(2) > span > a:nth-child(1)").url().split("=")[s], a.dados.aldeia.defensiva.idAldeia = $("#attack_info_def > tbody > tr:nth-child(2) > td:nth-child(2) > span > a:nth-child(1)").url().split("=")[s], i == this.dados.player.nomePlayer ? this.dados.player.playerEstaDefender = !0 : e == this.dados.player.nomePlayer && (this.dados.player.playerEstaAtacar = !0), $("#attack_spy_away > tbody > tr:nth-child(1) > th").length && (this.dados.aldeia.defensiva.tropas.fora.visiveis = !0, this.dados.mundo.arqueirosAtivos ? $("#attack_spy_away > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td").each((function(e, i) {
+                var s = parseInt(i.textContent);
+                e < a.dados.aldeia.defensiva.tropas.totais.length && (a.dados.aldeia.defensiva.tropas.fora.totais[e] = s), 2 == e || 5 == e || 6 == e || 8 == e ? a.dados.aldeia.defensiva.tropas.fora.ofensivas += s * a.dados.mundo.fazendaPorTropa[e] : 0 != e && 1 != e && 3 != e && 7 != e && 9 != e || (a.dados.aldeia.defensiva.tropas.fora.defensivas += s * a.dados.mundo.fazendaPorTropa[e])
+            })) : $("#attack_spy_away > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td").each((function(e, i) {
+                var s = parseInt(i.textContent);
+                e < a.dados.aldeia.defensiva.tropas.totais.length && (a.dados.aldeia.defensiva.tropas.fora.totais[e] = s), 2 == e || 4 == e || 6 == e ? a.dados.aldeia.defensiva.tropas.fora.ofensivas += s * a.dados.mundo.fazendaPorTropa[e] : 0 != e && 1 != e && 5 != e && 7 != e || (a.dados.aldeia.defensiva.tropas.fora.defensivas += s * a.dados.mundo.fazendaPorTropa[e])
+            }))), $("#attack_info_def_units > tbody > tr:nth-child(2) > td").length && (this.dados.aldeia.defensiva.tropas.visiveis = !0), this.dados.mundo.arqueirosAtivos ? (this.dados.aldeia.defensiva.tropas.visiveis && $("#attack_info_def_units > tbody > tr:nth-child(2) > td.unit-item").each((function(e, i) {
+                var s = parseInt(i.textContent);
+                e < a.dados.aldeia.defensiva.tropas.totais.length && (a.dados.aldeia.defensiva.tropas.dentro.totais[e] = s), 2 == e || 5 == e || 6 == e || 8 == e ? a.dados.aldeia.defensiva.tropas.dentro.ofensivas += s * a.dados.mundo.fazendaPorTropa[e] : 0 != e && 1 != e && 3 != e && 7 != e && 9 != e || (a.dados.aldeia.defensiva.tropas.dentro.defensivas += s * a.dados.mundo.fazendaPorTropa[e])
+            })), $("#attack_info_att_units > tbody > tr:nth-child(2) > td.unit-item").each((function(e, i) {
+                var s = parseInt(i.textContent);
+                e < a.dados.aldeia.ofensiva.tropas.totais.length && (a.dados.aldeia.ofensiva.tropas.totais[e] = s), 2 == e || 5 == e || 6 == e ? a.dados.aldeia.ofensiva.tropas.ofensivas += s * a.dados.mundo.fazendaPorTropa[e] : 0 != e && 1 != e && 3 != e && 7 != e && 9 != e || (a.dados.aldeia.ofensiva.tropas.defensivas += s * a.dados.mundo.fazendaPorTropa[e])
+            }))) : (this.dados.aldeia.defensiva.tropas.visiveis && $("#attack_info_def_units > tbody > tr:nth-child(2) > td.unit-item").each((function(e, i) {
+                var s = parseInt(i.textContent);
+                e < a.dados.aldeia.defensiva.tropas.totais.length && (a.dados.aldeia.defensiva.tropas.dentro.totais[e] = s), 2 == e || 4 == e || 6 == e ? a.dados.aldeia.defensiva.tropas.dentro.ofensivas += s * a.dados.mundo.fazendaPorTropa[e] : 0 != e && 1 != e && 5 != e && 7 != e || (a.dados.aldeia.defensiva.tropas.dentro.defensivas += s * a.dados.mundo.fazendaPorTropa[e])
+            })), $("#attack_info_att_units > tbody > tr:nth-child(2) > td.unit-item").each((function(e, i) {
+                var s = parseInt(i.textContent);
+                e < a.dados.aldeia.ofensiva.tropas.totais.length && (a.dados.aldeia.ofensiva.tropas.totais[e] = s), 2 == e || 4 == e || 6 == e ? a.dados.aldeia.ofensiva.tropas.ofensivas += s * a.dados.mundo.fazendaPorTropa[e] : 0 != e && 1 != e && 5 != e && 7 != e || (a.dados.aldeia.ofensiva.tropas.defensivas += s * a.dados.mundo.fazendaPorTropa[e])
+            }))), $("#attack_spy_buildings_left > tbody > tr:nth-child(1) > th:nth-child(1)").length && (this.dados.aldeia.defensiva.edificios.edificiosVisiveis = !0, $("table[id^='attack_spy_buildings_'] > tbody > tr:gt(0) > td > img").each((function(e, i) {
+                var s = i.src.split("/")[7].replace(".png", ""),
+                    t = parseInt(i.parentNode.parentNode.childNodes[3].textContent);
+                "watchtower" == s ? a.dados.aldeia.defensiva.edificios.torre = [!0, t] : "church_f" == s ? a.dados.aldeia.defensiva.edificios.igrejaPrincipal = [!0, t] : "church" == s ? a.dados.aldeia.defensiva.edificios.igreja = [!0, t] : "wall" == s && (a.dados.aldeia.defensiva.edificios.muralha = [!0, t])
+            })))
+        },
+        getTipoAldeia: function() {
+            this.dados.aldeia.defensiva.tropas.visiveis ? (this.dados.aldeia.defensiva.tropas.dentro.ofensivas > 3e3 ? this.dados.aldeia.defensiva.tipoAldeia = _t("offensive") : this.dados.aldeia.defensiva.tropas.dentro.ofensivas > 500 ? this.dados.aldeia.defensiva.tipoAldeia = _t("probOffensive") : this.dados.aldeia.defensiva.tropas.dentro.defensivas > 1e3 ? this.dados.aldeia.defensiva.tipoAldeia = _t("defensive") : this.dados.aldeia.defensiva.tropas.dentro.defensivas > 500 && (this.dados.aldeia.defensiva.tipoAldeia = _t("probDefensive")), this.dados.aldeia.defensiva.tropas.apoios = Math.round(this.dados.aldeia.defensiva.tropas.dentro.defensivas / 2e4 * 10) / 10) : this.dados.aldeia.defensiva.tropas.visiveis || (this.dados.aldeia.defensiva.tipoAldeia = _t("noSurvivors")), this.dados.aldeia.defensiva.tropas.fora.visiveis && (this.dados.aldeia.defensiva.tropas.fora.ofensivas > 3e3 ? this.dados.aldeia.defensiva.tipoAldeia = _t("offensive") : this.dados.aldeia.defensiva.tropas.fora.ofensivas > 1e3 ? this.dados.aldeia.defensiva.tipoAldeia = _t("probOffensive") : this.dados.aldeia.defensiva.tropas.fora.defensivas > 1e3 ? this.dados.aldeia.defensiva.tipoAldeia = _t("defensive") : this.dados.aldeia.defensiva.tropas.fora.defensivas > 500 ? this.dados.aldeia.defensiva.tipoAldeia = _t("probDefensive") : this.dados.aldeia.defensiva.tropas.fora.defensivas + this.dados.aldeia.defensiva.tropas.fora.ofensivas > 1e3 && (this.dados.aldeia.defensiva.tropas.fora.ofensivas > this.dados.aldeia.defensiva.tropas.fora.defensivas ? this.dados.aldeia.defensiva.tipoAldeia = _t("probOffensive") : this.dados.aldeia.defensiva.tropas.fora.defensivas >= this.dados.aldeia.defensiva.tropas.fora.ofensivas && (this.dados.aldeia.defensiva.tipoAldeia = _t("probDefensive"))), this.dados.aldeia.defensiva.tropas.apoios += Math.round(this.dados.aldeia.defensiva.tropas.fora.defensivas / 2e4 * 10) / 10), this.dados.aldeia.ofensiva.tropas.ofensivas > this.dados.aldeia.ofensiva.tropas.defensivas ? this.dados.aldeia.ofensiva.tipoAldeia = _t("offensive") : this.dados.aldeia.ofensiva.tropas.ofensivas < this.dados.aldeia.ofensiva.tropas.defensivas && (this.dados.aldeia.ofensiva.tipoAldeia = _t("defensive"))
+        },
+        geraTextoNota: function() {
+            var a, e = $("#report_export_code").text(),
+                i = $("#content_value > table > tbody > tr > td:nth-child(2) > table > tbody > tr > td > table:nth-child(2) > tbody > tr:nth-child(2)").text().replace(/\s+/g, " ").replace(/.{5}$/g, ""),
+                s = "";
+            return (this.dados.player.playerEstaAtacar || this.dados.player.playerQuerInfoDefensor) && (a = this.dados.aldeia.defensiva.tipoAldeia), this.dados.player.playerEstaAtacar && !this.dados.player.playerQuerInfoAtacante || (a = this.dados.aldeia.ofensiva.tipoAldeia), !this.dados.player.playerEstaAtacar && this.dados.player.playerQuerInfoDefensor && (a = this.dados.aldeia.defensiva.tipoAldeia), s += " | [color=#" + (a == _t("offensive") || a == _t("probOffensive") ? "ff0000" : "0eae0e") + "][b]" + a + "[/b][/color] | ", (this.dados.player.playerEstaAtacar || this.dados.player.playerQuerInfoDefensor) && (this.dados.aldeia.defensiva.edificios.torre[0] && (s += "[building]watchtower[/building] " + _t("watchtower") + this.dados.aldeia.defensiva.edificios.torre[1] + " | "), this.dados.aldeia.defensiva.edificios.muralha[0] && (s += "[building]wall[/building][color=#5c3600][b] " + _t("wall") + this.dados.aldeia.defensiva.edificios.muralha[1] + "[/b][/color] | "), this.dados.aldeia.defensiva.edificios.igrejaPrincipal[0] && (s += "[building]church_f[/building] " + _t("firstChurch") + " | "), this.dados.aldeia.defensiva.edificios.igreja[0] && (s += "[building]church_f[/building] " + _t("church") + " " + this.dados.aldeia.defensiva.edificios.igreja[1] + " | "), this.dados.aldeia.defensiva.tropas.visiveis && a != _t("offensive") && a != _t("probOffensive") && (s += this.dados.aldeia.defensiva.tropas.apoios + _t("defensiveNukes") + " | ")), s += "[b][size=6]xD[/size][/b]", s += "\n\n[b]" + i + "[/b]", s += "" + e
+        },
+        escreveNota: function() {
+            var a, e, i = this,
+                s = "";
+            if (s = this.dados.player.playerEstaAtacar || this.dados.player.playerQuerInfoDefensor ? parseInt(this.dados.aldeia.defensiva.idAldeia) : parseInt(this.dados.aldeia.ofensiva.idAldeia), e = "0" == game_data.player.sitter ? "https://" + location.hostname + "/game.php?village=" + game_data.village.id + "&screen=api&ajaxaction=village_note_edit&h=" + game_data.csrf + "&client_time=" + Math.round(Timing.getCurrentServerTime() / 1e3) : "https://" + location.hostname + "/game.php?village=" + game_data.village.id + "&screen=api&ajaxaction=village_note_edit&t=" + game_data.player.id, this.dados.player.playerEstaAtacar || this.dados.player.playerEstaDefender) a = i.geraTextoNota(), $.post(e, {
+                note: a,
+                village_id: s,
+                h: game_data.csrf
+            }, (function(a) {
+                UI.SuccessMessage(_t("noteCreated"), 2e3)
+            }));
+            else {
+                var t = $('<div class="center"> ' + _t("addReportTo") + " </div>"),
+                    d = $('<div class="center"><button class="btn btn-confirm-yes atk">' + _("Atacante") + '</button><button class="btn btn-confirm-yes def">' + _("Defensor") + "</button></div>"),
+                    o = t.add(d);
+                Dialog.show("relatorio_notas", o), d.find("button.atk").click((function() {
+                    i.dados.player.playerQuerInfoAtacante = !0, a = i.geraTextoNota(), $.post(e, {
+                        note: a,
+                        village_id: i.dados.aldeia.ofensiva.idAldeia,
+                        h: game_data.csrf
+                    }, (function(a) {
+                        UI.SuccessMessage(_t("noteCreated"), 2e3)
+                    })), Dialog.close()
+                })), d.find("button.def").click((function() {
+                    i.dados.player.playerQuerInfoDefensor = !0, a = i.geraTextoNota(), $.post(e, {
+                        note: a,
+                        village_id: i.dados.aldeia.defensiva.idAldeia,
+                        h: game_data.csrf
+                    }, (function(a) {
+                        UI.SuccessMessage(_t("noteCreated"), 2e3)
+                    })), Dialog.close()
+                }))
+            }
+        },
+        start: function() {
+            this.verificarPagina() && (this.initDadosScript(), this.getTipoAldeia(), this.escreveNota())
+        }}
+    console.log('Processing bbbData:', bbbData);
+}
+
+// 함수 실행
+processReport();

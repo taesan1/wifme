@@ -68,7 +68,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             }, Math.floor(Math.random() * 2000) + 1200);
         } else {
             var count = 0;
-            var label = "Dodged ";
+            var label = "닷지됨 ";
             var table = document.getElementById("incomings_table");
 
             if (table) {
@@ -81,6 +81,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         i = cc;
                     } else {
                         var gododged = /Dodged/g.test(row.cells[0].innerHTML);
+                        var gododged1 = /닷지됨/g.test(row.cells[0].innerHTML);
                         var gostack = /stacked/g.test(row.cells[0].innerHTML);
                         var gostack1 = /ST/g.test(row.cells[0].innerHTML);
                         var goattack = / Attack /g.test(row.cells[0].innerHTML);
@@ -181,7 +182,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var stop=localStorage.stop;
 
                         //닷지
-                        if (!gostack1 &&!gostack && !gododged  && !done && !done1 && !gonoble && !gonoble1&&stop==0&&mode=="방어"){
+                        if (!gostack1 &&!gostack && !gododged && !gododged1 && !done && !done1 && !gonoble && !gonoble1&&stop==0&&mode=="방어"){
                                 if (count < 1 && lt3 < dodn) {
                                 count++;
                                 $(row).find('.rename-icon').click();

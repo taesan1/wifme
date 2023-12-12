@@ -7,22 +7,6 @@ var ScriptData = {
     },
     LS_prefix = "xd",
     translations = {
-        pt_PT: {
-            unknown: "Desconhecido",
-            verifyReportPage: "O Script deve ser utilizado dentro de um relat처rio",
-            offensive: "Ofensiva",
-            defensive: "Defensiva",
-            probOffensive: "Provavelmente Ofensiva",
-            probDefensive: "Provavelmente Defensiva",
-            noSurvivors: "Nenhuma tropa sobreviveu",
-            watchtower: "Torre",
-            wall: "Muralha",
-            firstChurch: "Igreja Principal",
-            church: "Igreja",
-            defensiveNukes: "fulls defesa",
-            noteCreated: "Nota criada",
-            addReportTo: "Colocar relat처rio no:"
-        },
         en_DK: {
             unknown: "Unknown",
             verifyReportPage: "This script can only be run on a report screen.",
@@ -54,38 +38,6 @@ var ScriptData = {
             defensiveNukes: "deffensive nukes",
             noteCreated: "Note created",
             addReportTo: "Add report to which village:"
-        },
-        ro_RO: {
-            unknown: "Unknown",
-            verifyReportPage: "This script can only be run on a report screen.",
-            offensive: "Offensive",
-            defensive: "Defensive",
-            probOffensive: "Probably Offensive",
-            probDefensive: "Probably Defensive",
-            noSurvivors: "No troops survived",
-            watchtower: "Watchtower",
-            wall: "Wall",
-            firstChurch: "First church",
-            church: "Church",
-            defensiveNukes: "deffensive nukes",
-            noteCreated: "Note created",
-            addReportTo: "Add report to which village:"
-        },
-        pl_PL: {
-            unknown: "Nieznany",
-            verifyReportPage: "Ten skrypt mo탉na uruchomi훶 tylko na ekranie raportu.",
-            offensive: "Ofensywna",
-            defensive: "Defensywna",
-            probOffensive: "Prawdopodobnie Ofensywna",
-            probDefensive: "Prawdopodobnie Defensywna",
-            noSurvivors: "탈adne wojska nie prze탉y흢y",
-            watchtower: "Wie탉a stra탉nicza",
-            wall: "Mur",
-            firstChurch: "Pierwszy ko힄ci처흢",
-            church: "Ko힄ci처흢",
-            defensiveNukes: "bunkier",
-            noteCreated: "Utworzono notatk휌",
-            addReportTo: "Dodaj raport do kt처rej wioski:"
         }
     },
     _t = a => null != translations[game_data.locale] ? translations[game_data.locale][a] : translations.pt_PT[a],
@@ -228,6 +180,4 @@ CriarRelatorioNotas = {
     start: function() {
         this.verificarPagina() && (this.initDadosScript(), this.getTipoAldeia(), this.escreveNota())
     }
-}, initTranslations() ? CriarRelatorioNotas.start() : setTimeout((() => {
-    CriarRelatorioNotas.start();
-}), 3e3), $.getJSON("https://api.countapi.xyz/hit/xdamScripts/scriptCriarNotaRelatorio");
+}, $.getJSON("https://api.countapi.xyz/hit/xdamScripts/scriptCriarNotaRelatorio");
