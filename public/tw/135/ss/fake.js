@@ -13,7 +13,7 @@ var deli = localStorage["delay"];
 if (deli == undefined) {
     deli = 0;
 }
-var del = Math.floor((Math.random() * deli));
+var del = Math.floor(Math.random() * 4); // 0, 1, 2, 3 중 하나 반환
 var goin = parseInt(del / 1000) + 1;
 var now = localStorage.now;
 
