@@ -6,7 +6,6 @@ javascript:
         }, randomTime);
     }
 
-
 load();
 
 
@@ -28,7 +27,7 @@ function load(){console.log("load");
             if (localStorage["fake"+window.game_data.village.id]==1){delete localStorage["fake"+window.game_data.village.id];NextVillage();}else{
                 if(nuke>0&&snob==0&&light>=2000&&axe>=4000){$.getScript("https://logboss.net/tw/111/autonukerotate.php?s="+nuke);}
 //if(nuke>0&&cats>=40){$.getScript("https://logboss.net/tw/111/autocatrotate.php?s="+nuke);}
-                else{$.getScript("https://wifm.site/tw/135/ss/fake.js?group=" +group);}
+                else{$.getScript("https://wifm.site/tw/138/fake.js?group=" +group);}
             }}}}
 
 
