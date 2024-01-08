@@ -105,7 +105,7 @@ if(document.URL.match(page)&&stop==0) {
 
 
     setInterval(function () {
-        BOT_Check();
+        bot();
         var stockwood = parseInt(document.getElementById('premium_exchange_stock_wood').innerText);
         var capwood = parseInt(document.getElementById('premium_exchange_capacity_wood').innerText);
         var difwood = capwood - stockwood;
