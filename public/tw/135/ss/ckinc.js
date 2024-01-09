@@ -215,7 +215,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                 }
             }
         }
-    }
+
     function alert_noble() {
 var nn= 0;
 nn++;
