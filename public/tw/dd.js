@@ -1,6 +1,6 @@
 var messageToSend = sessionStorage.getItem('messageToSend');
 
-fetch('https://your-server-url.com/send-message', {
+fetch('https://wifm.site/.netlify/functions/discord', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
