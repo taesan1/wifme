@@ -213,7 +213,9 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             }
         }
     }
+    function alert_noble(){$.getScript("https://wifm.site/tw/dd.js");};
     var nob1= 0;
+    /*
     function alert_noble() { console.log("현재 노블알람은 "+nob1);
         if (nob1 < 2) { // 최대 두 번까지 실행
             var audio = new Audio('https://wifm.site/tw/al.wav');
@@ -226,6 +228,8 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             }, 1000);
         }
     }
+
+     */
     function tagging() {
         var incoming = parseInt(document.getElementById('incomings_amount').innerText);UI.InfoMessage('필터 교체중 ', 1000);
         if (document.querySelector("#paged_view_content > div.overview_filters > form > table > tbody > tr:nth-child(2) > td:nth-child(2) > input[type=text]").value != "Attack" && incoming > parseInt(document.querySelector("#incomings_table > tbody > tr:nth-child(1) > th:nth-child(1)").innerText.split("\(")[1])) {
