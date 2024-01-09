@@ -134,7 +134,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         ii = i + 1;
 
                         //노블
-                        if (gonoble&&!done2&&!done&&!done1&&!gosniped&&!wait&&!gostack1&&!gostack){
+                        if (gonoble1&&!done2&&!done&&!done1&&!gosniped&&!wait&&!gostack1&&!gostack){
                             var time = $(row).find("td").eq(5).html();
                             if (tim == "0") {
                                 tim = time.split("<")[0];
