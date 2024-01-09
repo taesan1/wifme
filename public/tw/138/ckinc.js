@@ -80,7 +80,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                     if (end) {
                         i = cc;
                     } else {
-                        var gododged = /Dodged/g.test(row.cells[0].innerHTML);
+                        var gododged = /Dodged/g.test(row.cells[0].innerHTML); //Dodged
                         var gododged1 = /닷지됨/g.test(row.cells[0].innerHTML);
                         var gostack = /stacked/g.test(row.cells[0].innerHTML);
                         var gostack1 = /ST/g.test(row.cells[0].innerHTML);

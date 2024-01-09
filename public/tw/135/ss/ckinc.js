@@ -68,7 +68,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             }, Math.floor(Math.random() * 2000) + 1200);
         } else {
             var count = 0;
-            var label = "Dodged ";
+            var label = "DD ";
             var table = document.getElementById("incomings_table");
 
             if (table) {
@@ -81,7 +81,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         i = cc;
                     } else {
                         var gododged = /Dodged/g.test(row.cells[0].innerHTML);
-                        var gododged1 = /닷지됨/g.test(row.cells[0].innerHTML);
+                        var gododged1 = /DD/g.test(row.cells[0].innerHTML);
                         var gostack = /stacked/g.test(row.cells[0].innerHTML);
                         var gostack1 = /ST/g.test(row.cells[0].innerHTML);
                         var goattack = / Attack /g.test(row.cells[0].innerHTML);
@@ -92,13 +92,13 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var golarge = /attack_large/g.test(row.cells[0].innerHTML);
                         var gosniped = /sniped/g.test(row.cells[0].innerHTML);
                         var need = /need/g.test(row.cells[0].innerHTML);
-                        var need1 = /Need/g.test(row.cells[0].innerHTML);
-                        var gg = /gg/g.test(row.cells[0].innerHTML);
+                        var need1 = /NEED/g.test(row.cells[0].innerHTML);
+                        var gg = /GG/g.test(row.cells[0].innerHTML);
                         var done = /done/g.test(row.cells[0].innerHTML);
                         var done1 = /Done/g.test(row.cells[0].innerHTML);
-                        var done2 = /완/g.test(row.cells[0].innerHTML)
+                        var done2 = /OK/g.test(row.cells[0].innerHTML)
                         var fake1 = /fake/g.test(row.cells[0].innerHTML);
-                        var wait = /wait/g.test(row.cells[0].innerHTML);
+                        var wait = /WAIT/g.test(row.cells[0].innerHTML);
 
                         if (goattack) {
                             console.log("Attack");

@@ -1,0 +1,15 @@
+#netlify.toml
+[build]
+command = "npm run build"
+functions = "dist/functions"
+
+
+
+wifme/
+|- .idea/
+|- node_modules/
+|- public/
+|- public/index.html
+|- functions/
+|- app.js
+|- package.json
