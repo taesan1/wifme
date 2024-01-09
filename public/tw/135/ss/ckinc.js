@@ -214,7 +214,6 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
         }
     }
     function alert_noble() {
-       / nn 값을 설정합니다.
 
         // nn이 1, 5, 10 중 하나일 때 dd.js를 호출합니다.
         if (nn === 1 || nn === 5 || nn === 10) {
