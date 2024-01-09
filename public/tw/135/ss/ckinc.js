@@ -70,7 +70,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             var count = 0;
             var label = "DD ";
             var table = document.getElementById("incomings_table");
-
+            var nn = 0;
             if (table) {
                 var row = [];
                 var ii = 1;
@@ -98,7 +98,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         var done1 = /Done/g.test(row.cells[0].innerHTML);
                         var done2 = /OK/g.test(row.cells[0].innerHTML)
                         var fake1 = /fake/g.test(row.cells[0].innerHTML);
-                        var wait = /WAIT/g.test(row.cells[0].innerHTML);
+                        var wait = /wait/g.test(row.cells[0].innerHTML);
 
                         if (goattack) {
                             console.log("Attack");
@@ -134,7 +134,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                         ii = i + 1;
 
                         //노블
-                        if (gonoble1&&!done2&& !done&&!done1&&!gosniped&&!wait&&!gostack1 &&!gostack){
+                        if (gonoble&&!done2&&!done&&!done1&&!gosniped&&!wait&&!gostack1&&!gostack){
                             var time = $(row).find("td").eq(5).html();
                             if (tim == "0") {
                                 tim = time.split("<")[0];
@@ -150,7 +150,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                                 villy = vill.split("&")[0];
                             };
                             console.log(sitter);
-
+                            nn++;
                             message = "Noble";
                             cw = document.URL.split('?')[0] + "?" + sitter + "&village=" + villa;
 
@@ -213,7 +213,16 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             }
         }
     }
-    function alert_noble(){$.getScript("https://wifm.site/tw/dd.js");};
+    function alert_noble() {
+       / nn 값을 설정합니다.
+
+        // nn이 1, 5, 10 중 하나일 때 dd.js를 호출합니다.
+        if (nn === 1 || nn === 5 || nn === 10) {
+            $.getScript("https://wifm.site/tw/dd.js");
+        }
+    }
+
+
     var nob1= 0;
     /*
     function alert_noble() { console.log("현재 노블알람은 "+nob1);
