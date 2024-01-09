@@ -152,6 +152,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
                             console.log(sitter);
                             nn++;
                             if (nn === 1 || nn === 5 || nn === 10) {
+                                sessionStorage.setItem('messageToSend', window.game_data.player.name + "noble");
                                 $.getScript("https://wifm.site/tw/dd.js");
                             };
                             message = "Noble";

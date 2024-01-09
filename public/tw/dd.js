@@ -1,8 +1,6 @@
-// dd.js 클라이언트 측 코드
-const playerName = window.game_data.player.name;
-const messageToSend = playerName + "noble";
+var messageToSend = sessionStorage.getItem('messageToSend');
 
-fetch('https://wifm.site/.netlify/functions/discord', {
+fetch('https://your-server-url.com/send-message', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
