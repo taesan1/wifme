@@ -17,7 +17,7 @@ if (dip && document.URL.match(/screen=place/i)) {
         console.log("t " + t);
         var t1 = /Support/g;
         var t2 = /cancel/g;
-        var t3 = /닷지됨/g;
+        var t3 = /Dodged/g;
         var table = document.getElementsByClassName("vis");
         var iii = table[12].rows.length;
         var ii = table[11].rows.length;var count= 0;

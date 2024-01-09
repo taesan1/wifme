@@ -68,7 +68,7 @@ if (document.URL.match(/screen=overview_villages&mode=incomings&subtype=attacks&
             }, Math.floor(Math.random() * 2000) + 1200);
         } else {
             var count = 0;
-            var label = "닷지됨 ";
+            var label = "Dodged ";
             var table = document.getElementById("incomings_table");
 
             if (table) {
